@@ -19,7 +19,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\NilaiImport;
-use App\Models\NilaiSiswa;
+use App\Models\NilaiSiswaModel;
 use Illuminate\Support\Facades\Session;
 
 class ExcelController extends Controller
@@ -48,6 +48,6 @@ class ExcelController extends Controller
 
     public function export_excel()
     {
-        return Excel::download(new NilaiSiswa(), 'NilaiSiswa.xlsx');
+        return Excel::download(new NilaiSiswaModel(), 'NilaiSiswa.xlsx');
     }
 }

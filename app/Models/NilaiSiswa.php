@@ -18,7 +18,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NilaiSiswa extends Model
+class NilaiSiswaModel extends Model
 {
     protected $table = "nilaisiswa";
     protected $primaryKey = 'nis';

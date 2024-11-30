@@ -15,10 +15,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NilaiSiswa;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\NilaiImport;
 use Illuminate\Support\Facades\Session;
 
 class MainController extends Controller
