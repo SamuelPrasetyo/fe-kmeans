@@ -17,8 +17,9 @@ namespace App\Imports;
 
 use App\Models\NilaiSiswaModel;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class NilaiImport implements ToModel
+class NilaiImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -27,16 +28,26 @@ class NilaiImport implements ToModel
     */
     public function model(array $row)
     {
-        if (NilaiSiswaModel::where('nis', $row[1])->exists()) {
-            return null; // Lewati data jika 'nis' sudah ada
-        }
+        // if (NilaiSiswaModel::where('nis', $row[1])->exists()) {
+        //     return null; // Lewati data jika 'nis' sudah ada
+        // }
 
         return new NilaiSiswaModel([
-            'nis' => $row[1],
-            'nama_siswa' => $row[2],
-            'nama_mapel' => $row[3],
-            'nilai' => $row[4],
-            'link_id' => $row[5]
+            'semester' => $row['semester'],
+            'nis' => $row['nis'],
+            'kelas' => $row['kelas'],
+            'nama_siswa' => $row['nama_siswa'],
+            'nagama' => $row['nagama'],
+            'npkn' => $row['npkn'],
+            'nbindo' => $row['nbindo'],
+            'nmatematika' => $row['nmatematika'],
+            'nipa' => $row['nipa'],
+            'nips' => $row['nips'],
+            'nbinggris' => $row['nbinggris'],
+            'nsenibudaya' => $row['nsenibudaya'],
+            'npjok' => $row['npjok'],
+            'nprakarya' => $row['nprakarya'],
+            'ntik' => $row['ntik'],
         ]);
     }
 }

@@ -17,14 +17,6 @@
                         </button>
                         <a href="{{ url('nilaisiswa/export') }}" class="btn btn-light mb-3">Export</a>
                     </div>
-                    <!-- <div class="col">
-                        <div class="form-group">
-                            <form action="#" method="get" class="form-inline">
-                                <input class="btn btn-success" type="submit" value="Find" style="float: right; width: 80px;">
-                                <input class="form-control" type="text" name="cari" placeholder="Search..." style="width: 200px; float: right;" autocomplete="off" required>
-                            </form>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             
@@ -38,31 +30,51 @@
             <table class="table table-bordered table-striped">
                 <thead class="text-center">
                     <th>No.</th>
+                    <th>Semester</th>
                     <th>NIS</th>
-                    <th>Nama Siswa</th>
-                    <th>Nilai Matematika</th>
-                    <th>Nilai B.Inggris</th>
-                    <th>Nilai B.Indo</th>
-                    <th>Nilai IPA</th>
+                    <th>Kelas</th>
+                    <th style="width: 150px;">Nama Siswa</th>
+                    <th>Agama</th>
+                    <th>PKN</th>
+                    <th>B. Indo</th>
+                    <th>MTK</th>
+                    <th>IPA</th>
+                    <th>IPS</th>
+                    <th>B. Inggris</th>
+                    <th>Seni Budaya</th>
+                    <th>PJOK</th>
+                    <th>Prakarya</th>
+                    <th>TIK</th>
                 </thead>
                 <tbody class="text-center">
                     @foreach ($nilaisiswa as $index => $n)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <!-- <td>{{ $loop->iteration }}</td> -->
+                        <td>{{ $n->idnilai }}</td>
+                        <td>{{ $n->semester }}</td>
                         <td>{{ $n->nis }}</td>
+                        <td>{{ $n->kelas }}</td>
                         <td>{{ $n->nama_siswa }}</td>
-                        <td>{{ $n->nmatematika }}</td>
-                        <td>{{ $n->nbinggris }}</td>
+                        <td>{{ $n->nagama }}</td>
+                        <td>{{ $n->npkn }}</td>
                         <td>{{ $n->nbindo }}</td>
+                        <td>{{ $n->nmatematika }}</td>
                         <td>{{ $n->nipa }}</td>
-                        <!-- <td width="200px">
-                            <a href="/transaksi/update/{{ $n->id }}" class="btn btn-warning" style="width: 75px;">Edit</a> |
-                            <a href="/transaksi/delete/{{ $n->id }}" class="btn btn-danger" style="width: 75px;">Hapus</a>
-                        </td> -->
+                        <td>{{ $n->nips }}</td>
+                        <td>{{ $n->nbinggris }}</td>
+                        <td>{{ $n->nsenibudaya }}</td>
+                        <td>{{ $n->npjok }}</td>
+                        <td>{{ $n->nprakarya }}</td>
+                        <td>{{ $n->ntik }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $nilaisiswa->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>
@@ -73,9 +85,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="importExcelModalLabel">Import Excel</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" ariaa-label="Close"></button>
             </div>
-            <form action="/nilaisiswa/import" method="POST" enctype="multipart/form-data">
+            <form action="import-nilai-siswa" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">

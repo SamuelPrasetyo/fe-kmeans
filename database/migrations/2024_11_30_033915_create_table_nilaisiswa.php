@@ -13,11 +13,21 @@ return new class extends Migration
     {
         Schema::create('nilaisiswa', function (Blueprint $table) {
             $table->increments('idnilai');
+            $table->string('semester');
             $table->integer('nis');
+            $table->string('kelas');
             $table->string('nama_siswa');
-            $table->string('nama_mapel');
-            $table->float('nilai');
-            $table->integer('link_id');
+            $table->integer('nagama');
+            $table->integer('npkn');
+            $table->integer('nbindo');
+            $table->integer('nmatematika');
+            $table->integer('nipa');
+            $table->integer('nips');
+            $table->integer('nbinggris');
+            $table->integer('nsenibudaya');
+            $table->integer('npjok');
+            $table->integer('nprakarya');
+            $table->integer('ntik');
             $table->timestamps();
         });
     }

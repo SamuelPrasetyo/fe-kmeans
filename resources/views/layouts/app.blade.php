@@ -27,7 +27,7 @@
         .sidebar {
             height: 100vh;
             /* Full height */
-            width: 250px;
+            width: 200px;
             /* Lebar sidebar */
             position: fixed;
             /* Tetap pada posisi */
@@ -54,8 +54,8 @@
         }
 
         .content {
-            margin-left: 250px;
-            padding: 1rem;
+            margin-left: 200px;
+            /* padding: 1rem; */
         }
     </style>
 
@@ -63,10 +63,10 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <a href="dashboard">Dashboard</a>
-            <a href="data">File Data Siswa</a>
-            <a href="elbow-method">Elbow Method</a>
+            <a href="nilaisiswa">Data Nilai Siswa</a>
+            <!-- <a href="elbow-method">Elbow Method</a> -->
             <a href="form-clustering">Form Clustering</a>
-            <a href="#logout">Logout</a>
+            <a href="logout">Logout</a>
         </div>
 
         <main class="py-4">
@@ -75,8 +75,7 @@
     </div>
 
     <!-- Script JS -->
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 </body>
 
 </html>
