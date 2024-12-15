@@ -54,7 +54,7 @@
         }
 
         .content {
-            margin-left: 200px;
+            margin-left: 220px;
             /* padding: 1rem; */
         }
     </style>

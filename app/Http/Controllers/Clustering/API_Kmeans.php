@@ -16,30 +16,38 @@ class API_Kmeans extends Controller
         $request->validate([
             'file' => 'required|file|mimes:xlsx,xls'
         ]);
-    
+
         $file = $request->file('file');
-        
+
         try {
             // Kirim file ke API
             $response = Http::attach(
-                'file', 
-                file_get_contents($file->getRealPath()), 
+                'file',
+                file_get_contents($file->getRealPath()),
                 $file->getClientOriginalName()
             )->post('http://127.0.0.1:5000/kmeans'); // Host menggunakan local IPV4
 
             // Log respons dari API
             Log::info('Response:', ['response' => $response->body()]);
-    
+
             // Cek apakah respons berhasil
             if ($response->successful()) {
                 $data = $response->json();
-                
+
+                // Hitung jumlah data per cluster
+                $clusters = collect($data['data'])->groupBy('Cluster')->map(function ($items) {
+                    return count($items); // Hitung jumlah data dalam setiap cluster
+                });
+
                 return view('kmeans.Result', [
                     'optimal_k' => $data['optimal_k'],
+                    'davies_bouldin_index' => $data['davies_bouldin_index'],
                     'silhouette_score' => $data['silhouette_score'],
+                    'calinski_harabasz_index' => $data['calinski_harabasz_index'],
+                    'sum_squared_error' => $data['sum_squared_error'],
                     'final_centroids' => $data['final_centroids'],
                     'data' => $data['data'],
-                    // 'davies_bouldin_index' => $data['davies_bouldin_index'],
+                    'clusters' => $clusters
                     // 'result_file' => $data['result_file']
                 ]);
             } else {
@@ -51,8 +59,5 @@ class API_Kmeans extends Controller
         }
     }
 
-    public function elbowMethod()
-    {
-        
-    }
+    public function elbowMethod() {}
 }
