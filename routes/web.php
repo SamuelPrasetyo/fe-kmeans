@@ -16,9 +16,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('', [App\Http\Controllers\Auth\AuthController::class, 'PageLogin']);
-Route::post('login', [App\Http\Controllers\Auth\AuthController::class, 'Login']);
-Route::get('logout', [App\Http\Controllers\Auth\AuthController::class, 'Logout']);
+Route::get('', [App\Http\Controllers\AuthController::class, 'PageLogin']);
+Route::post('login', [App\Http\Controllers\AuthController::class, 'Login']);
+Route::get('logout', [App\Http\Controllers\AuthController::class, 'Logout']);
 Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
 
 /* Route Nilai Siswa */
@@ -26,7 +26,10 @@ Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
     Route::post('import-nilai-siswa', [App\Http\Controllers\Data\ExcelController::class, 'import_excel']);
 /* End Route Nilai Siswa */
 
-Route::get('form-clustering', [App\Http\Controllers\MainController::class, 'formClustering']);
+/* Route Process Clustering */
+    Route::get('form-clustering', [App\Http\Controllers\MainController::class, 'formClustering']);
+    Route::post('process-clustering', [App\Http\Controllers\MainController::class, 'processClustering']);
+/* End Route Process Clustering */
 
 Route::post('elbow-method', [App\Http\Controllers\Clustering\API_Kmeans::class, 'elbowMethod'])->name('elbow-method');
 Route::post('kmeans', [App\Http\Controllers\Clustering\API_Kmeans::class, 'index'])->name('kmeans');
