@@ -76,6 +76,8 @@
 
     <!-- Script JS -->
     <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
+
+    @yield('scripts')
 </body>
 
 </html>

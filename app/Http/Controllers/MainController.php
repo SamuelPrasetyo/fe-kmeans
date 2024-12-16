@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Modules\API_Kmeans;
 
 class MainController extends Controller
 {
@@ -28,5 +29,33 @@ class MainController extends Controller
     public function formClustering()
     {
         return view('FormClustering');
+    }
+
+    public function processClustering(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:xlsx,xls'
+        ]);
+
+        $file = $request->file('file');
+
+        $algoritma = $request->input('algoritma');
+
+        switch ($algoritma) {
+            case 'kmeans':
+                $api_kmeans = new API_Kmeans;
+                return $api_kmeans->index($file);
+            
+            case 'dbscan':
+                # code...
+                break;
+            
+            // case 'meanshift':
+            //     # code...
+            //     break;
+
+            default:
+                return back()->withErrors(['error' => 'Algoritma tidak valid!']);
+        }
     }
 }

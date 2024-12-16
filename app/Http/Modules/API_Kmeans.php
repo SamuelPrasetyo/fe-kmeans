@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Clustering;
+namespace App\Http\Modules;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,16 +8,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class API_Kmeans extends Controller
+class API_Kmeans
 {
-    public function index(Request $request)
+    public function index($file)
     {
-
-        $request->validate([
-            'file' => 'required|file|mimes:xlsx,xls'
-        ]);
-
-        $file = $request->file('file');
+        // $file = $request->file('file');
 
         try {
             // Kirim file ke API

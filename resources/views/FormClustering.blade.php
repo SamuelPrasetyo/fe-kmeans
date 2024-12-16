@@ -17,20 +17,17 @@
         @endif
 
         <div class="card-body">
-            <!-- <form action="/clustering" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label for="k" class="form-label">Jumlah K</label>
-                    <input type="number" class="form-control" id="k" name="k" placeholder="Jumlah K" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form> -->
-
-            <form action="{{ route('kmeans') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('process-clustering') }}" method="POST" enctype="multipart/form-data" target="_blank">
                 @csrf
                 <label for="file">Upload File Excel:</label>
-                <input type="file" name="file" id="file" required>
-                <button type="submit">Proses</button>
+                <input type="file" name="file" id="file" required><br>
+
+                <!-- Button untuk memproses Algoritma Masing2 -->
+                 <div class="mt-3">
+                    <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button>
+                    <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button>
+                    <button class="btn btn-danger" type="submit" name="algoritma" value="meanshift">Proses Mean Shift</button>
+                 </div>
             </form>
 
             @if ($errors->any())
