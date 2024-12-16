@@ -30,6 +30,3 @@ Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
     Route::get('form-clustering', [App\Http\Controllers\MainController::class, 'formClustering']);
     Route::post('process-clustering', [App\Http\Controllers\MainController::class, 'processClustering'])->name('process-clustering');
 /* End Route Process Clustering */
-
-Route::post('elbow-method', [App\Http\Controllers\Clustering\API_Kmeans::class, 'elbowMethod'])->name('elbow-method');
-Route::post('kmeans', [App\Http\Controllers\Clustering\API_Kmeans::class, 'index'])->name('kmeans');
