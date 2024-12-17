@@ -24,6 +24,8 @@ Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
 /* Route Nilai Siswa */
     Route::get('nilaisiswa', [App\Http\Controllers\Data\NilaiSiswaController::class, 'index']);
     Route::post('import-nilai-siswa', [App\Http\Controllers\Data\ExcelController::class, 'import_excel']);
+    Route::get('export-nilai-siswa', [App\Http\Controllers\Data\ExcelController::class, 'export_excel']);
+    Route::delete('delete-nilai-siswa', [App\Http\Controllers\Data\NilaiSiswaController::class, 'delete'])->name('delete-nilai-siswa');
 /* End Route Nilai Siswa */
 
 /* Route Process Clustering */

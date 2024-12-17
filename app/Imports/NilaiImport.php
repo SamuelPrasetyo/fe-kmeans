@@ -34,6 +34,7 @@ class NilaiImport implements ToModel, WithHeadingRow
 
         return new NilaiSiswaModel([
             'semester' => $row['semester'],
+            'tahunajar' => $row['tahun_ajar'],
             'nis' => $row['nis'],
             'kelas' => $row['kelas'],
             'nama_siswa' => $row['nama_siswa'],

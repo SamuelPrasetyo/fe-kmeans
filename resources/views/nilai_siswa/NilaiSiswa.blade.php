@@ -3,34 +3,44 @@
 @section('title', 'Nilai Siswa')
 
 @section('content')
+<style>
+    #button {
+        width: 200px;
+    }
+</style>
+
 <div class="container">
     <div class="card mt-2">
         <div class="card-header text-center">
             <h3>Data Nilai Siswa</h3>
         </div>
         <div class="card-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#importExcelModal">
-                            Import
-                        </button>
-                        <a href="{{ url('nilaisiswa/export') }}" class="btn btn-light mb-3">Export</a>
-                    </div>
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#importExcelModal" id="button">
+                        Import
+                    </button>
+                    <a href="{{ url('export-nilai-siswa') }}" class="btn btn-light mb-3" id="button">Export</a>
+                </div>
+                <div class="col-4 text-end">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" id="button">
+                        Hapus Semua Data
+                    </button>
                 </div>
             </div>
-            
-            @if ($message = Session::get('Sukses'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{ $message }}</strong>
-                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button> 
-                </div>
+
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('success') }}</strong>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             @endif
 
             <table class="table table-bordered table-striped">
                 <thead class="text-center">
                     <th>No.</th>
                     <th>Semester</th>
+                    <th>Tahun Ajar</th>
                     <th>NIS</th>
                     <th>Kelas</th>
                     <th style="width: 150px;">Nama Siswa</th>
@@ -52,6 +62,7 @@
                         <!-- <td>{{ $loop->iteration }}</td> -->
                         <td>{{ $n->idnilai }}</td>
                         <td>{{ $n->semester }}</td>
+                        <td>{{ $n->tahunajar }}</td>
                         <td>{{ $n->nis }}</td>
                         <td>{{ $n->kelas }}</td>
                         <td>{{ $n->nama_siswa }}</td>
@@ -78,6 +89,29 @@
         </div>
     </div>
 </div>
+
+<!-- Delete Data Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteLabel">Konfirmasi Hapus</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Yakin ingin menghapus semua data?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                <form action="/delete-nilai-siswa" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div
 
 <!-- Import Excel Modal -->
 <div class="modal fade" id="importExcelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">

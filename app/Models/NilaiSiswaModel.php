@@ -25,6 +25,7 @@ class NilaiSiswaModel extends Model
     protected $fillable = [
         'idnilai',
         'semester',
+        'tahunajar',
         'nis',
         'kelas',
         'nama_siswa',
