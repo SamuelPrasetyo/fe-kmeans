@@ -4,23 +4,20 @@ namespace App\Http\Modules;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class API_Kmeans
+class API_dbscan
 {
     public function index($file)
     {
-        // $file = $request->file('file');
-
         try {
             // Kirim file ke API
             $response = Http::attach(
                 'file',
                 file_get_contents($file->getRealPath()),
                 $file->getClientOriginalName()
-            )->post('http://127.0.0.1:5000/kmeans'); // Host menggunakan local IPV4
+            )->post('http://127.0.0.1:5000/dbscan'); // Host menggunakan local IPV4
 
             // Log respons dari API
             Log::info('Response:', ['response' => $response->body()]);
@@ -34,13 +31,12 @@ class API_Kmeans
                     return count($items); // Hitung jumlah data dalam setiap cluster
                 });
 
-                return view('kmeans.Result', [
-                    'optimal_k' => $data['optimal_k'],
+                return view('dbscan.Result', [
                     'davies_bouldin_index' => $data['davies_bouldin_index'],
                     'silhouette_score' => $data['silhouette_score'],
                     'calinski_harabasz_index' => $data['calinski_harabasz_index'],
                     'sum_squared_error' => $data['sum_squared_error'],
-                    'final_centroids' => $data['final_centroids'],
+                    'image' => $data['k_distance_graph'],
                     'data' => $data['data'],
                     'clusters' => $clusters
                     // 'result_file' => $data['result_file']

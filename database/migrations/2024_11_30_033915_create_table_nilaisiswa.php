@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('nilaisiswa', function (Blueprint $table) {
             $table->increments('idnilai');
             $table->string('semester');
+            $table->string('tahunajar');
             $table->integer('nis');
             $table->string('kelas');
             $table->string('nama_siswa');

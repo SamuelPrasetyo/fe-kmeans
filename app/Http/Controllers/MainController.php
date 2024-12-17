@@ -15,6 +15,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Modules\API_dbscan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Modules\API_Kmeans;
@@ -47,8 +48,8 @@ class MainController extends Controller
                 return $api_kmeans->index($file);
             
             case 'dbscan':
-                # code...
-                break;
+                $api_dbscan = new API_dbscan;
+                return $api_dbscan->index($file);
             
             // case 'meanshift':
             //     # code...

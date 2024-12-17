@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Hasil Clustering K-Means')
+@section('title', 'Hasil Clustering DBSCAN')
 
 @section('content')
 <style>
@@ -19,10 +19,6 @@
     <h3>Hasil Evaluasi Clustering</h3>
         <table class="table table-bordered" style="width: 25%;">
             <tr>
-                <td>Optimal K</td>
-                <td>{{ $optimal_k }}</td>
-            </tr>
-            <tr>
                 <td>Davies Bouldin Index</td>
                 <td>{{ $davies_bouldin_index }}</td>
             </tr>
@@ -39,31 +35,13 @@
                 <td>{{ $sum_squared_error }}</td>
             </tr>
         </table>
+
+    <!-- Gambar K-Distance Graph -->
+     <img src="{{ $image }}" alt="K-Distance Graph">
     
     <!-- Grafik di bawah hasil evaluasi -->
     <h3>Grafik Jumlah Data per Cluster</h3>
     <canvas id="clusterChart" style="max-width: 350px; height: 100px;"></canvas>
-
-    <!-- Table Nilai Centroid Akhir -->
-    <h3>Nilai Centroid Final</h3>
-        <table class="table table-bordered data-table">
-            <thead>
-                <tr>
-                    @foreach ($final_centroids[0] as $index => $value)
-                    <th id="header-table">Dimension {{ $index + 1 }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($final_centroids as $centroid)
-                <tr>
-                    @foreach ($centroid as $value)
-                    <td>{{ $value }}</td>
-                    @endforeach
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
 
     <h3>Data Cluster</h3>
     <table class="table table-bordered table-striped data-table">
@@ -71,8 +49,8 @@
             <tr>
                 <th id="header-table">No.</th>
                 <th id="header-table">Cluster</th>
-                <th id="header-table">Semester</th>
                 <th id="header-table">Kelas</th>
+                <th id="header-table">Semester</th>
                 <th id="header-table">NIS</th>
                 <th id="header-table">Nama Siswa</th>
                 <th id="header-table">AGAMA</th>
@@ -93,10 +71,10 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $row['Cluster'] }}</td>
-                <td>{{ $row['Semester'] }}</th>
-                <td>{{ $row['Kelas'] }}</th>
-                <td>{{ $row['NIS'] }}</th>
-                <td>{{ $row['Nama Siswa'] }}</th>
+                <td>{{ $row['Kelas'] }}</td>
+                <td>{{ $row['Semester'] }}</td>
+                <td>{{ $row['NIS'] }}</td>
+                <td>{{ $row['Nama Siswa'] }}</td>
                 <td>{{ $row['NAGAMA'] }}</td>
                 <td>{{ $row['NBINDO'] }}</td>
                 <td>{{ $row['NBINGGRIS'] }}</td>
