@@ -7,6 +7,20 @@
     #button {
         width: 200px;
     }
+
+    table.table th, table.table td {
+        min-width: 150px; /* Lebar minimum kolom */
+        text-align: center; /* Teks rata tengah */
+    }
+
+    table.table th:first-child, table.table td:first-child {
+        min-width: 50px; /* Lebar untuk kolom No */
+    }
+
+    /* Kolom nama siswa lebih lebar */
+    table.table th:nth-child(6), table.table td:nth-child(6) {
+        min-width: 200px; /* Kolom nama siswa */
+    }    
 </style>
 
 <div class="container">
@@ -36,51 +50,53 @@
             </div>
             @endif
 
-            <table class="table table-bordered table-striped">
-                <thead class="text-center">
-                    <th>No.</th>
-                    <th>Semester</th>
-                    <th>Tahun Ajar</th>
-                    <th>NIS</th>
-                    <th>Kelas</th>
-                    <th style="width: 150px;">Nama Siswa</th>
-                    <th>Agama</th>
-                    <th>PKN</th>
-                    <th>B. Indo</th>
-                    <th>MTK</th>
-                    <th>IPA</th>
-                    <th>IPS</th>
-                    <th>B. Inggris</th>
-                    <th>Seni Budaya</th>
-                    <th>PJOK</th>
-                    <th>Prakarya</th>
-                    <th>TIK</th>
-                </thead>
-                <tbody class="text-center">
-                    @foreach ($nilaisiswa as $index => $n)
-                    <tr>
-                        <!-- <td>{{ $loop->iteration }}</td> -->
-                        <td>{{ $n->idnilai }}</td>
-                        <td>{{ $n->semester }}</td>
-                        <td>{{ $n->tahunajar }}</td>
-                        <td>{{ $n->nis }}</td>
-                        <td>{{ $n->kelas }}</td>
-                        <td>{{ $n->nama_siswa }}</td>
-                        <td>{{ $n->nagama }}</td>
-                        <td>{{ $n->npkn }}</td>
-                        <td>{{ $n->nbindo }}</td>
-                        <td>{{ $n->nmatematika }}</td>
-                        <td>{{ $n->nipa }}</td>
-                        <td>{{ $n->nips }}</td>
-                        <td>{{ $n->nbinggris }}</td>
-                        <td>{{ $n->nsenibudaya }}</td>
-                        <td>{{ $n->npjok }}</td>
-                        <td>{{ $n->nprakarya }}</td>
-                        <td>{{ $n->ntik }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div style="overflow-x: auto; white-space: nowrap;">
+                <table class="table table-bordered table-striped">
+                    <thead class="text-center">
+                        <th>No.</th>
+                        <th>Semester</th>
+                        <th>Tahun Ajar</th>
+                        <th>NIS</th>
+                        <th>Kelas</th>
+                        <th style="width: 150px;">Nama Siswa</th>
+                        <th>Agama</th>
+                        <th>PKN</th>
+                        <th>Bahasa Indonesia</th>
+                        <th>Matematika</th>
+                        <th>IPA</th>
+                        <th>IPS</th>
+                        <th>Bahasa Inggris</th>
+                        <th>Seni Budaya</th>
+                        <th>PJOK</th>
+                        <th>Prakarya</th>
+                        <th>TIK</th>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach ($nilaisiswa as $index => $n)
+                        <tr>
+                            <!-- <td>{{ $loop->iteration }}</td> -->
+                            <td>{{ $n->idnilai }}</td>
+                            <td>{{ $n->semester }}</td>
+                            <td>{{ substr($n->tahunajar, 0, 4) . ' / ' . substr($n->tahunajar, 4) }}</td>
+                            <td>{{ $n->nis }}</td>
+                            <td>{{ $n->kelas }}</td>
+                            <td>{{ $n->nama_siswa }}</td>
+                            <td>{{ $n->nagama }}</td>
+                            <td>{{ $n->npkn }}</td>
+                            <td>{{ $n->nbindo }}</td>
+                            <td>{{ $n->nmatematika }}</td>
+                            <td>{{ $n->nipa }}</td>
+                            <td>{{ $n->nips }}</td>
+                            <td>{{ $n->nbinggris }}</td>
+                            <td>{{ $n->nsenibudaya }}</td>
+                            <td>{{ $n->npjok }}</td>
+                            <td>{{ $n->nprakarya }}</td>
+                            <td>{{ $n->ntik }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
             <!-- Pagination -->
             <div class="d-flex justify-content-center mt-4">
@@ -113,7 +129,7 @@
     </div>
 </div
 
-<!-- Import Excel Modal -->
+    <!-- Import Excel Modal -->
 <div class="modal fade" id="importExcelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

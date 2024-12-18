@@ -29,7 +29,11 @@ class MainController extends Controller
 
     public function formClustering()
     {
-        return view('FormClustering');
+        $utils = new UtilityController;
+        $tahunajar = $utils->listTahunAjar();
+        $semester = $utils->listSemester();
+
+        return view('FormClustering', compact('tahunajar', 'semester'));
     }
 
     public function processClustering(Request $request)

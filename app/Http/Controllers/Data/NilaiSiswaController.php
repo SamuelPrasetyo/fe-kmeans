@@ -12,7 +12,7 @@ class NilaiSiswaController extends Controller
     public function index()
     {
         return view('nilai_siswa.NilaiSiswa', [
-            'nilaisiswa' => DB::table('nilaisiswa')->paginate(20)
+            'nilaisiswa' => DB::table('nilaisiswa')->paginate(10)
         ]);
     }
 
