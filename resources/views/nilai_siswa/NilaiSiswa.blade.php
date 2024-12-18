@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
             <div class="row justify-content-between">
-                <div class="col-4">
+                <div class="col-5">
                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#importExcelModal" id="button">
                         Import
                     </button>
