@@ -29,7 +29,6 @@ return new class extends Migration
             $table->integer('npjok');
             $table->integer('nprakarya');
             $table->integer('ntik');
-            $table->timestamps();
         });
     }
 

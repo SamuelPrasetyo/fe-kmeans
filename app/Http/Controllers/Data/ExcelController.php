@@ -16,12 +16,11 @@
 
 namespace App\Http\Controllers\Data;
 
+use App\Exports\NilaiExport;
 use App\Http\Controllers\Controller;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\NilaiSiswaModel;
-use Illuminate\Support\Facades\Session;
 
 class ExcelController extends Controller
 {
@@ -32,20 +31,16 @@ class ExcelController extends Controller
         ]);
 
         $file = $request->file('file');
-
         $nama_file = rand().$file->getClientOriginalName();
-
         $file->move('uploads', $nama_file);
 
         Excel::import(new NilaiImport(), public_path('/uploads/'.$nama_file));
-
-        Session::flash('success', 'Data berhasil diimport!');
-
-        return redirect('nilaisiswa');
+                
+        return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
     }
 
     public function export_excel()
     {
-        return Excel::download(new NilaiSiswaModel(), 'NilaiSiswaModel.xlsx');
+        return Excel::download(new NilaiExport, 'DataNilaiSiswaAll.xlsx');
     }
 }

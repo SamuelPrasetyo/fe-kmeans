@@ -20,7 +20,7 @@
                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#importExcelModal" id="button">
                         Import
                     </button>
-                    <a href="{{ url('export-nilai-siswa') }}" class="btn btn-light mb-3" id="button">Export</a>
+                    <a href="export-nilai-siswa" class="btn btn-light mb-3" id="button">Export</a>
                 </div>
                 <div class="col-4 text-end">
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" id="button">
