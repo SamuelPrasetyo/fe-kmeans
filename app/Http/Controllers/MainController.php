@@ -1,24 +1,25 @@
 <?php
+
 /***
-**   ███████  █████  ███    ███ ██    ██ ███████ ██      
-**   ██      ██   ██ ████  ████ ██    ██ ██      ██      
-**   ███████ ███████ ██ ████ ██ ██    ██ █████   ██      
-**        ██ ██   ██ ██  ██  ██ ██    ██ ██      ██      
-**   ███████ ██   ██ ██      ██  ██████  ███████ ███████ 
-*                                                       
-*? Author : SAMUEL PRASETYO
-*! Quotes : "Tetaplah berjuang untuk mencapai kesuksesanmu. 
-*!           Jangan mengandalkan orang lain, karena setiap 
-*!           langkah yang kamu ambil dan setiap usaha yang 
-*!           kamu lakukan adalah hasil kerja kerasmu sendiri."
-*/
+ **   ███████  █████  ███    ███ ██    ██ ███████ ██      
+ **   ██      ██   ██ ████  ████ ██    ██ ██      ██      
+ **   ███████ ███████ ██ ████ ██ ██    ██ █████   ██      
+ **        ██ ██   ██ ██  ██  ██ ██    ██ ██      ██      
+ **   ███████ ██   ██ ██      ██  ██████  ███████ ███████ 
+ *                                                       
+ *? Author : SAMUEL PRASETYO
+ *! Quotes : "Tetaplah berjuang untuk mencapai kesuksesanmu. 
+ *!           Jangan mengandalkan orang lain, karena setiap 
+ *!           langkah yang kamu ambil dan setiap usaha yang 
+ *!           kamu lakukan adalah hasil kerja kerasmu sendiri."
+ */
 
 namespace App\Http\Controllers;
 
 use App\Http\Modules\API_dbscan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Http\Modules\API_Kmeans;
+use App\Http\Modules\API_agglomerative;
 
 class MainController extends Controller
 {
@@ -39,25 +40,28 @@ class MainController extends Controller
     public function processClustering(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|mimes:xlsx,xls'
+            'tahunajar' => 'required',
+            'semester' => 'required',
+            'algoritma' => 'required'
         ]);
 
-        $file = $request->file('file');
-
+        $tahunajar = json_decode($request->input('tahunajar'), true);
+        $semester = json_decode($request->input('semester'), true);
+        // dd($tahunajar, $semester);
         $algoritma = $request->input('algoritma');
 
         switch ($algoritma) {
             case 'kmeans':
                 $api_kmeans = new API_Kmeans;
-                return $api_kmeans->index($file);
-            
+                return $api_kmeans->index($tahunajar, $semester);
+
             case 'dbscan':
                 $api_dbscan = new API_dbscan;
-                return $api_dbscan->index($file);
-            
-            // case 'meanshift':
-            //     # code...
-            //     break;
+                return $api_dbscan->index($tahunajar, $semester);
+
+            case 'agglomerative':
+                $api_agglomerative = new API_agglomerative;
+                return $api_agglomerative->index($tahunajar, $semester);
 
             default:
                 return back()->withErrors(['error' => 'Algoritma tidak valid!']);

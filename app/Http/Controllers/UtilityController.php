@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClusteringExport;
 
 class UtilityController extends Controller
 {
@@ -23,5 +25,23 @@ class UtilityController extends Controller
         $query = "SELECT distinct semester FROM nilaisiswa";
 
         return DB::select($query);
+    }
+
+    public function generateExcel()
+    {
+        // Ambil data dari session
+        $clusteringResult = session('clustering_result');
+
+        if (!$clusteringResult) {
+            return back()->withErrors(['error' => 'Data clustering tidak ditemukan.']);
+        }
+
+        $data = $clusteringResult['data'];
+        $clusters = $clusteringResult['clusters'];
+        
+        $fileName = 'hasil_clustering_' . $clusteringResult['algoritma'] . '_smt_' 
+                . $clusteringResult['semester'] . '_thajar_' . $clusteringResult['tahunajar'] . '.xlsx';
+
+        return Excel::download(new ClusteringExport($data, $clusters), $fileName);
     }
 }

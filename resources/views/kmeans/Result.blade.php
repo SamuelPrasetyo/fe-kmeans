@@ -156,6 +156,7 @@
                     position: 'top',
                 }
             },
+            aspectRatio: 3,
             scales: {
                 y: {
                     beginAtZero: true
