@@ -43,11 +43,13 @@ class MainController extends Controller
         $request->validate([
             'tahunajar' => 'required',
             'semester' => 'required',
+            'jumlah_k' => 'sometimes',
             'algoritma' => 'required'
         ]);
 
         $tahunajar = json_decode($request->input('tahunajar'), true);
         $semester = json_decode($request->input('semester'), true);
+        $n_clusters = json_decode($request->input('jumlah_k'), true);
         $algoritma = $request->input('algoritma');
 
         switch ($algoritma) {
@@ -57,7 +59,7 @@ class MainController extends Controller
 
             case 'kmeans':
                 $api_kmeans = new API_Kmeans;
-                return $api_kmeans->index($tahunajar, $semester);
+                return $api_kmeans->index($tahunajar, $semester, $n_clusters);
 
             case 'kdgraph':
                 $api_dbscan = new API_dbscan;

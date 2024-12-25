@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Log;
 
 class API_Kmeans
 {
-    public function index($tahunajar, $semester)
+    public function index($tahunajar, $semester, $n_clusters)
     {
         try {
             $response = Http::post('http://127.0.0.1:5000/kmeans', [
                 'tahunajar' => $tahunajar,
-                'semester' => $semester
+                'semester' => $semester,
+                'n_clusters' => $n_clusters
             ]);
 
             // Log respons dari API
@@ -44,7 +45,7 @@ class API_Kmeans
                 ]);
                 
                 return view('kmeans.Result', [
-                    'optimal_k' => $data['optimal_k'],
+                    'optimal_k' => $data['n_clusters'],
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],

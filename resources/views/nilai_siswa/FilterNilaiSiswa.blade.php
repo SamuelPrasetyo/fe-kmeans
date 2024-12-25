@@ -48,8 +48,8 @@
 
     <form action="{{ route('process-clustering') }}" method="POST" target="_blank">
         @csrf
-        <input type="hidden" name="tahunajar" value="{{ json_encode($result[0]->tahunajar) }}">
-        <input type="hidden" name="semester" value="{{ json_encode($result[0]->semester) }}">
+        <input type="hidden" name="tahunajar" id="tahunajar" value="{{ json_encode($result[0]->tahunajar) }}">
+        <input type="hidden" name="semester" id="semester" value="{{ json_encode($result[0]->semester) }}">
         <div class="mt-3 mb-3">
             <div class="d-flex flex-row flex-wrap">
                 <div class="card" style="width: 24rem; margin-right: 1rem;">
@@ -59,7 +59,8 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="elbow-method">Elbow Method</button>
-                            <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button>
+                            <!-- <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button> -->
+                            <button class="btn btn-primary" type="button" name="algoritma" value="kmeans" data-bs-toggle="modal" data-bs-target="#inputKModal">Proses K-Means</button>
                         </div>
                     </div>
                 </div>
@@ -146,4 +147,50 @@
         </table>
     </div>
 </div>
+
+
+
+<!-- Input Jumlah K Modal (K-Means) -->
+<div class="modal fade" id="inputKModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="inputKModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inputKModalLabel">Input Jumlah K</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('process-clustering') }}" method="POST" target="_blank">
+                @csrf
+                <input type="hidden" name="tahunajar" id="modal-tahunajar">
+                <input type="hidden" name="semester" id="modal-semester">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="file">Input Jumlah K :</label>
+                        <input type="number" name="jumlah_k" class="form-control" min="2" max="10" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" name="algoritma" value="kmeans">Proses</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputKModal = document.getElementById('inputKModal');
+
+        inputKModal.addEventListener('show.bs.modal', () => {
+            const tahunajar = document.getElementById('tahunajar').value;
+            const semester = document.getElementById('semester').value;
+
+            document.getElementById('modal-tahunajar').value = tahunajar;
+            document.getElementById('modal-semester').value = semester;
+        });
+    });
+</script>
 @endsection
