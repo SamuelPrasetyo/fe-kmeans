@@ -15,20 +15,21 @@ return new class extends Migration
             $table->increments('idnilai');
             $table->string('semester');
             $table->string('tahunajar');
-            $table->integer('nis');
+            $table->string('nis');
             $table->string('kelas');
             $table->string('nama_siswa');
-            $table->integer('nagama');
-            $table->integer('npkn');
-            $table->integer('nbindo');
-            $table->integer('nmatematika');
-            $table->integer('nipa');
-            $table->integer('nips');
-            $table->integer('nbinggris');
-            $table->integer('nsenibudaya');
-            $table->integer('npjok');
-            $table->integer('nprakarya');
-            $table->integer('ntik');
+            $table->string('nagama');
+            $table->string('npkn');
+            $table->string('nbindo');
+            $table->string('nmatematika');
+            $table->string('nipa');
+            $table->string('nips');
+            $table->string('nbinggris');
+            $table->string('nsenibudaya');
+            $table->string('npjok');
+            $table->string('nprakarya');
+            $table->string('ntik');
+            $table->timestamps();
         });
     }
 
