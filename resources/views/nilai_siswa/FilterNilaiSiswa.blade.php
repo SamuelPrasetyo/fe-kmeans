@@ -71,7 +71,8 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="kdgraph">K-Distance Graph</button>
-                            <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button>
+                            <!-- <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button> -->
+                            <button class="btn btn-primary" type="button" name="algoritma" value="dbscan" data-bs-toggle="modal" data-bs-target="#inputHyperModal">Proses DBSCAN</button>
                         </div>
                     </div>
                 </div>
@@ -177,20 +178,57 @@
         </div>
     </div>
 </div>
+
+<!-- Input Eps dan Min Pts Modal (DBSCAN) -->
+<div class="modal fade" id="inputHyperModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="inputHyperModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inputHyperModalLabel">Input Eps dan Min Pts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('process-clustering') }}" method="POST" target="_blank">
+                @csrf
+                <input type="hidden" name="tahunajar" id="modal-tahunajar">
+                <input type="hidden" name="semester" id="modal-semester">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="file">Input Nilai Eps :</label>
+                        <input type="number" name="eps" class="form-control" min="1" maxlength="2" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 2%;">
+                        <label for="file">Input Min. Samples :</label>
+                        <input type="number" name="min_pts" class="form-control" min="2" maxlength="2" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary" name="algoritma" value="dbscan">Proses</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const inputKModal = document.getElementById('inputKModal');
+        const populateModalInputs = (modalId) => {
+            const modal = document.getElementById(modalId);
 
-        inputKModal.addEventListener('show.bs.modal', () => {
-            const tahunajar = document.getElementById('tahunajar').value;
-            const semester = document.getElementById('semester').value;
+            modal.addEventListener('show.bs.modal', () => {
+                const tahunajar = document.getElementById('tahunajar').value;
+                const semester = document.getElementById('semester').value;
 
-            document.getElementById('modal-tahunajar').value = tahunajar;
-            document.getElementById('modal-semester').value = semester;
-        });
+                modal.querySelector('#modal-tahunajar').value = tahunajar;
+                modal.querySelector('#modal-semester').value = semester;
+            });
+        };
+
+        populateModalInputs('inputKModal');
+        populateModalInputs('inputHyperModal');
     });
 </script>
 @endsection

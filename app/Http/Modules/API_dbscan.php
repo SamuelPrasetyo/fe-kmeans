@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Log;
 
 class API_dbscan
 {
-    public function index($tahunajar, $semester)
+    public function index($tahunajar, $semester, $eps, $min_pts)
     {
         try {
             $response = Http::post('http://127.0.0.1:5000/dbscan', [
                 'tahunajar' => $tahunajar,
-                'semester' => $semester
+                'semester' => $semester,
+                'eps' => $eps,
+                'min_pts' => $min_pts
             ]);
 
             // Log respons dari API

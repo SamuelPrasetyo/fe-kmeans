@@ -44,13 +44,19 @@ class MainController extends Controller
             'tahunajar' => 'required',
             'semester' => 'required',
             'jumlah_k' => 'sometimes',
+            'eps' => 'sometimes',
+            'min_pts' => 'sometimes',
             'algoritma' => 'required'
         ]);
 
+        $algoritma = $request->input('algoritma');
         $tahunajar = json_decode($request->input('tahunajar'), true);
         $semester = json_decode($request->input('semester'), true);
-        $n_clusters = json_decode($request->input('jumlah_k'), true);
-        $algoritma = $request->input('algoritma');
+        // Params K-Means
+            $n_clusters = json_decode($request->input('jumlah_k'), true);
+        // Params DBSCAN
+            $eps = json_decode($request->input('eps'), true);
+            $min_pts = json_decode($request->input('min_pts'), true);
 
         switch ($algoritma) {
             case 'elbow-method':
@@ -67,7 +73,7 @@ class MainController extends Controller
 
             case 'dbscan':
                 $api_dbscan = new API_dbscan;
-                return $api_dbscan->index($tahunajar, $semester);
+                return $api_dbscan->index($tahunajar, $semester, $eps, $min_pts);
 
             case 'agglomerative':
                 $api_agglomerative = new API_agglomerative;
