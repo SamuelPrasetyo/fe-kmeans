@@ -51,10 +51,41 @@
         <input type="hidden" name="tahunajar" value="{{ json_encode($result[0]->tahunajar) }}">
         <input type="hidden" name="semester" value="{{ json_encode($result[0]->semester) }}">
         <div class="mt-3 mb-3">
-            <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button>
-            <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button>
-            <button class="btn btn-danger" type="submit" name="algoritma" value="meanshift">Proses Mean Shift</button>
-            <button class="btn btn-success" type="submit" name="algoritma" value="agglomerative">Proses Agglomerative</button>
+            <div class="d-flex flex-row flex-wrap">
+                <div class="card" style="width: 24rem; margin-right: 1rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">K-Means</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma K-Means</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-link" type="submit" name="algoritma" value="elbow-method">Elbow Method</button>
+                            <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 24rem; margin-right: 1rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">DBSCAN</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma DBSCAN</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-link" type="submit" name="algoritma" value="kdgraph">K-Distance Graph</button>
+                            <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="width: 24rem; margin-right: 1rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Agglomerative</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma Agglomerative</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="#" class="card-link">Elbow Method</a>
+                            <button class="btn btn-success" type="submit" name="algoritma" value="agglomerative">Proses Agglomerative</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         @if ($errors->any())

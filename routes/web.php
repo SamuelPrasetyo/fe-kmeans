@@ -14,7 +14,6 @@
  *!           kamu lakukan adalah hasil kerja kerasmu sendiri."
  */
 
-use Dflydev\DotAccessData\Util;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', [App\Http\Controllers\AuthController::class, 'PageLogin']);

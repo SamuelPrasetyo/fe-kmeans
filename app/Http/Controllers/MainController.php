@@ -20,6 +20,7 @@ use App\Http\Modules\API_dbscan;
 use Illuminate\Http\Request;
 use App\Http\Modules\API_Kmeans;
 use App\Http\Modules\API_agglomerative;
+use Svg\Tag\Rect;
 
 class MainController extends Controller
 {
@@ -47,13 +48,20 @@ class MainController extends Controller
 
         $tahunajar = json_decode($request->input('tahunajar'), true);
         $semester = json_decode($request->input('semester'), true);
-        // dd($tahunajar, $semester);
         $algoritma = $request->input('algoritma');
 
         switch ($algoritma) {
+            case 'elbow-method':
+                $api_kmeans = new API_Kmeans;
+                return $api_kmeans->elbowMethod($tahunajar, $semester);
+
             case 'kmeans':
                 $api_kmeans = new API_Kmeans;
                 return $api_kmeans->index($tahunajar, $semester);
+
+            case 'kdgraph':
+                $api_dbscan = new API_dbscan;
+                return $api_dbscan->kdistanceGraph($tahunajar, $semester);
 
             case 'dbscan':
                 $api_dbscan = new API_dbscan;
