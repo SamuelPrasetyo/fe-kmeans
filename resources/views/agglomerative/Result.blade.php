@@ -6,19 +6,36 @@
 <style>
     #header-table {
         background-color: yellow;
-        width: 120px;
-    }
-
-    .data-table {
-        text-align: center;
+        /* width: 120px; */
     }
 
     h3 {
         margin-top: 20px;
     }
+
+    table.table th,
+    table.table td {
+        min-width: 150px;
+        /* Lebar minimum kolom */
+        text-align: center;
+        /* Teks rata tengah */
+    }
+
+    table.table th:first-child,
+    table.table td:first-child {
+        min-width: 50px;
+        /* Lebar untuk kolom No */
+    }
+
+    /* Kolom nama siswa lebih lebar */
+    table.table th:nth-child(6),
+    table.table td:nth-child(6) {
+        min-width: 200px;
+        /* Kolom nama siswa */
+    }
 </style>
 
-<div>
+<div style="margin-right: 1%;">
     <a href="{{ route('download.excel') }}" target="_blank" class="btn btn-primary">Download Laporan</a>
 
     <!-- Table Hasil Evaluasi Clustering -->
@@ -71,8 +88,8 @@
 
     <h3>Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
-        <table class="table table-bordered table-striped data-table">
-            <thead>
+        <table class="table table-bordered table-striped">
+            <thead class="text-center">
                 <tr>
                     <th id="header-table">No.</th>
                     <th id="header-table">Cluster</th>
@@ -80,7 +97,7 @@
                     <th id="header-table">Semester</th>
                     <th id="header-table">Kelas</th>
                     <th id="header-table">NIS</th>
-                    <th id="header-table">Nama Siswa</th>
+                    <th id="header-table" style="width: 150px;">Nama Siswa</th>
                     <th id="header-table">AGAMA</th>
                     <th id="header-table">B. INDO</th>
                     <th id="header-table">B. INGGRIS</th>
@@ -94,12 +111,12 @@
                     <th id="header-table">TIK</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($data as $row)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $row['Cluster'] }}</td>
-                    <td>{{ $row['Tahun Ajar'] }}</td>
+                    <td>{{ substr($row['Tahun Ajar'], 0, 4) . ' / ' . substr($row['Tahun Ajar'], 4) }}</td>
                     <td>{{ $row['Semester'] }}</th>
                     <td>{{ $row['Kelas'] }}</th>
                     <td>{{ $row['NIS'] }}</th>
