@@ -47,7 +47,7 @@
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <th id="header-table">Dimension</th>
+                <th id="header-table">Dimensi</th>
                 @foreach ($final_centroids as $index => $centroid)
                 <th id="header-table">Centroid {{ $index + 1 }}</th>
                 @endforeach
@@ -56,7 +56,7 @@
         <tbody>
             @foreach ($final_centroids[0] as $dimIndex => $value)
             <tr>
-                <td>Dimension {{ $dimIndex + 1 }}</td>
+                <td>Dimensi {{ $dimIndex + 1 }}</td>
                 @foreach ($final_centroids as $centroid)
                 <td>{{ $centroid[$dimIndex] }}</td>
                 @endforeach
@@ -67,7 +67,7 @@
 
     <!-- Grafik di bawah hasil evaluasi -->
     <h3>Grafik Jumlah Data per Cluster</h3>
-    <canvas id="clusterChart" style="width: 200px; height: 50px; align-content: start;"></canvas>
+    <canvas id="clusterChart" style="width: 200px; height: 50px;"></canvas>
 
     <h3>Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
