@@ -192,7 +192,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="file">Input Nilai Eps :</label>
-                        <input type="number" name="eps" class="form-control" min="1" maxlength="2" required>
+                        <input type="number" name="eps" class="form-control" min="1" maxlength="2" step="0.5" required>
                     </div>
                     <div class="form-group" style="margin-top: 2%;">
                         <label for="file">Input Min. Samples :</label>
