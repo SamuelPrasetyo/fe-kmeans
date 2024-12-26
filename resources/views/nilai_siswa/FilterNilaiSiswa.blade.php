@@ -59,7 +59,6 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="elbow-method">Elbow Method</button>
-                            <!-- <button class="btn btn-primary" type="submit" name="algoritma" value="kmeans">Proses K-Means</button> -->
                             <button class="btn btn-primary" type="button" name="algoritma" value="kmeans" data-bs-toggle="modal" data-bs-target="#inputKModal">Proses K-Means</button>
                         </div>
                     </div>
@@ -71,7 +70,6 @@
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="kdgraph">K-Distance Graph</button>
-                            <!-- <button class="btn btn-warning" type="submit" name="algoritma" value="dbscan">Proses DBSCAN</button> -->
                             <button class="btn btn-primary" type="button" name="algoritma" value="dbscan" data-bs-toggle="modal" data-bs-target="#inputHyperModal">Proses DBSCAN</button>
                         </div>
                     </div>
@@ -81,8 +79,7 @@
                         <h5 class="card-title">Agglomerative</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma Agglomerative</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="card-link">Elbow Method</a>
+                        <div class="d-flex flex-row-reverse">
                             <button class="btn btn-success" type="submit" name="algoritma" value="agglomerative">Proses Agglomerative</button>
                         </div>
                     </div>

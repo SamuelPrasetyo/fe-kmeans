@@ -48,8 +48,8 @@ class API_agglomerative
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
                     'sum_squared_error' => $data['evaluation']['sum_squared_error'],
-                    'data' => $data['data'],
                     'final_centroids' => $data['centroids'],
+                    'data' => $data['data'],
                     'clusters' => $clusters
                 ]);
             } else {

@@ -36,6 +36,8 @@
 </style>
 
 <div style="margin-right: 1%;">
+    <a href="{{ route('download.excel') }}" target="_blank" class="btn btn-primary">Download Laporan</a>
+
     <!-- Table Hasil Evaluasi Clustering -->
     <h3>Hasil Evaluasi Clustering</h3>
     <table class="table table-bordered" style="width: 25%;">

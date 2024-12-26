@@ -31,6 +31,22 @@ class API_dbscan
                     return count($items); // Hitung jumlah data dalam setiap cluster
                 });
 
+                // Simpan data ke session
+                session([
+                    'clustering_result' => [
+                        'algoritma' => 'dbscan',
+                        'semester' => $semester,
+                        'tahunajar' => $tahunajar,
+                        'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
+                        'silhouette_score' => $data['evaluation']['silhouette_score'],
+                        'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
+                        // 'sum_squared_error' => $data['evaluation']['sum_squared_error'],
+                        // 'final_centroids' => $data['final_centroids'],
+                        'data' => $data['data'],
+                        'clusters' => $clusters
+                    ]
+                ]);
+
                 return view('dbscan.Result', [
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
