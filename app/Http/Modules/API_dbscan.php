@@ -79,6 +79,8 @@ class API_dbscan
                 $data = $response->json();
 
                 return view('dbscan.KDistanceGraph', [
+                    'tahunajar' => $tahunajar,
+                    'semester' => $semester,
                     'results' => $data['results'],
                     'k_distance_plot' => $data['k_distance_plot']
                 ]);

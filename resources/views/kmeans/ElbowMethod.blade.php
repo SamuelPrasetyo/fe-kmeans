@@ -10,6 +10,19 @@
     }
 </style>
 
+<table style="font-weight: bold;">
+    <tr>
+        <td>Tahun Ajar</td>
+        <td style="padding: 0 10px;">:</td>
+        <td>{{ substr($tahunajar, 0, 4) . ' / ' . substr($tahunajar, 4) }}</td>
+    </tr>
+    <tr>
+        <td>Semester</td>
+        <td style="padding: 0 10px;">:</td>
+        <td>{{ $semester }}</td>
+    </tr>
+</table>
+
 <div style="display: flex; align-items: flex-start; gap: 20px;">
     <!-- Tabel Nilai Distortions -->
     <div style="flex: 1; text-align: center;">

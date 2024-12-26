@@ -79,6 +79,8 @@ class API_Kmeans
                 $data = $response->json();
                 
                 return view('kmeans.ElbowMethod', [
+                    'tahunajar' => $tahunajar,
+                    'semester' => $semester,
                     'distortions' => $data['distortions'],
                     'plot' => $data['plot']
                 ]);
