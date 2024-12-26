@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Illuminate\Support\Facades\DB;
 
 class NilaiExport implements FromCollection, WithHeadings, WithStyles, WithColumnWidths
 {
@@ -16,25 +17,47 @@ class NilaiExport implements FromCollection, WithHeadings, WithStyles, WithColum
      */
     public function collection()
     {
-        return NilaiSiswaModel::select(
-            'idnilai',
-            'semester',
-            'tahunajar',
-            'nis',
-            'kelas',
-            'nama_siswa',
-            'nagama',
-            'npkn',
-            'nbindo',
-            'nmatematika',
-            'nipa',
-            'nips',
-            'nbinggris',
-            'nsenibudaya',
-            'npjok',
-            'nprakarya',
-            'ntik'
-        )->get();
+        // return NilaiSiswaModel::select(
+        //     'idnilai',
+        //     'semester',
+        //     'tahunajar',
+        //     'nis',
+        //     'kelas',
+        //     'nama_siswa',
+        //     'nagama',
+        //     'npkn',
+        //     'nbindo',
+        //     'nmatematika',
+        //     'nipa',
+        //     'nips',
+        //     'nbinggris',
+        //     'nsenibudaya',
+        //     'npjok',
+        //     'nprakarya',
+        //     'ntik'
+        // )->get();
+
+        return DB::table('nilaisiswa') // Nama tabel sesuai dengan model Anda
+        ->selectRaw("
+            idnilai,
+            semester,
+            CONCAT(LEFT(tahunajar, 4), ' / ', RIGHT(tahunajar, 4)) as tahunajar, -- Format Tahun Ajar
+            nis,
+            kelas,
+            nama_siswa,
+            nagama,
+            npkn,
+            nbindo,
+            nmatematika,
+            nipa,
+            nips,
+            nbinggris,
+            nsenibudaya,
+            npjok,
+            nprakarya,
+            ntik
+        ")
+        ->get();
     }
 
     public function headings(): array
