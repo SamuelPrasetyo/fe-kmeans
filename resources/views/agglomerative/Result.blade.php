@@ -36,31 +36,55 @@
 </style>
 
 <div style="margin-right: 1%;">
-    <a href="{{ route('download.excel') }}" target="_blank" class="btn btn-primary">Download Laporan</a>
-
-    <!-- Table Hasil Evaluasi Clustering -->
-    <h3>Hasil Evaluasi Clustering</h3>
-    <table class="table table-bordered" style="width: 25%;">
+    <h1>Hasil Clustering Agglomerative</h1>
+    <table class="mb-3">
         <tr>
-            <td>Davies Bouldin Index</td>
-            <td>{{ $davies_bouldin_index }}</td>
+            <td>Tahun Ajar</td>
+            <td style="padding: 0 10px;">:</td>
+            <td>{{ substr($tahunajar, 0, 4) . ' / ' . substr($tahunajar, 4) }}</td>
         </tr>
         <tr>
-            <td>Silhouette Score</td>
-            <td>{{ $silhouette_score }}</td>
-        </tr>
-        <tr>
-            <td>Calinski Harabasz Index</td>
-            <td>{{ $calinski_harabasz_index }}</td>
-        </tr>
-        <tr>
-            <td>Sum Squared Error</td>
-            <td>{{ $sum_squared_error }}</td>
+            <td>Semester</td>
+            <td style="padding: 0 10px;">:</td>
+            <td>{{ $semester }}</td>
         </tr>
     </table>
 
+    <a href="{{ route('download.excel') }}" target="_blank" class="btn btn-primary">Download Laporan</a>
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;">
+        <!-- Grafik Jumlah Data per Cluster -->
+        <div style="flex: 1;">
+            <h3 style="text-align: center;">Grafik Jumlah Data per Cluster</h3>
+            <canvas id="clusterChart" style="width: 100%; height: auto;"></canvas>
+        </div>
+        
+        <!-- Table Hasil Evaluasi Clustering -->
+        <div style="flex: 1;">
+            <h3 style="text-align: center;">Hasil Evaluasi Clustering</h3>
+            <table class="table table-bordered" style="width: 100%;">
+                <tr>
+                    <td>Davies Bouldin Index</td>
+                    <td>{{ $davies_bouldin_index }}</td>
+                </tr>
+                <tr>
+                    <td>Silhouette Score</td>
+                    <td>{{ $silhouette_score }}</td>
+                </tr>
+                <tr>
+                    <td>Calinski Harabasz Index</td>
+                    <td>{{ $calinski_harabasz_index }}</td>
+                </tr>
+                <tr>
+                    <td>Sum Squared Error</td>
+                    <td>{{ $sum_squared_error }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
     <!-- Table Nilai Centroid Akhir -->
-    <h3>Nilai Centroid Final</h3>
+    <h3 style="text-align: center;">Nilai Centroid Final</h3>
     <table class="table table-bordered data-table">
         <thead>
             <tr>
@@ -82,11 +106,7 @@
         </tbody>
     </table>
 
-    <!-- Grafik di bawah hasil evaluasi -->
-    <h3>Grafik Jumlah Data per Cluster</h3>
-    <canvas id="clusterChart" style="width: 200px; height: 50px;"></canvas>
-
-    <h3>Data Cluster</h3>
+    <h3 style="text-align: center;">Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
         <table class="table table-bordered table-striped">
             <thead class="text-center">
@@ -148,10 +168,10 @@
     // Data Cluster untuk Grafik Doughnut
     const ctx = document.getElementById('clusterChart').getContext('2d');
     const data = {
-        labels: {!! json_encode($clusters->keys()) !!}, // Nama cluster
+        labels: <?php echo json_encode($clusters->keys()); ?>, // Nama cluster
         datasets: [{
             label: 'Jumlah Data',
-            data: {!! json_encode($clusters->values()) !!}, // Jumlah data per cluster
+            data: <?php echo json_encode($clusters->values()); ?>, // Jumlah data per cluster
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -181,10 +201,10 @@
                 legend: {
                     position: 'top',
                 },
-                title: {
-                    display: true,
-                    text: 'Grafik Jumlah Data per Cluster'
-                }
+                // title: {
+                //     display: true,
+                //     text: 'Grafik Jumlah Data per Cluster'
+                // }
             },
             aspectRatio: 3
         }

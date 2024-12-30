@@ -44,6 +44,8 @@ class API_agglomerative
                 ]);
 
                 return view('agglomerative.Result', [
+                    'semester' => $semester,
+                    'tahunajar' => $tahunajar,
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],

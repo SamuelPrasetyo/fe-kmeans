@@ -22,7 +22,7 @@ class API_Kmeans
             // Cek apakah respons berhasil
             if ($response->successful()) {
                 $data = $response->json();
-                
+
                 // Hitung jumlah data per cluster
                 $clusters = collect($data['data'])->groupBy('Cluster')->map(function ($items) {
                     return count($items); // Hitung jumlah data dalam setiap cluster
@@ -43,9 +43,11 @@ class API_Kmeans
                         'clusters' => $clusters
                     ]
                 ]);
-                
+
                 return view('kmeans.Result', [
-                    'optimal_k' => $data['n_clusters'],
+                    'semester' => $semester,
+                    'tahunajar' => $tahunajar,
+                    // 'optimal_k' => $data['n_clusters'],
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
@@ -77,7 +79,7 @@ class API_Kmeans
             // Cek apakah respons berhasil
             if ($response->successful()) {
                 $data = $response->json();
-                
+
                 return view('kmeans.ElbowMethod', [
                     'tahunajar' => $tahunajar,
                     'semester' => $semester,
