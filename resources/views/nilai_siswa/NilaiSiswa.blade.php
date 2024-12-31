@@ -8,19 +8,26 @@
         width: 200px;
     }
 
-    table.table th, table.table td {
-        min-width: 150px; /* Lebar minimum kolom */
-        text-align: center; /* Teks rata tengah */
+    table.table th,
+    table.table td {
+        min-width: 150px;
+        /* Lebar minimum kolom */
+        text-align: center;
+        /* Teks rata tengah */
     }
 
-    table.table th:first-child, table.table td:first-child {
-        min-width: 50px; /* Lebar untuk kolom No */
+    table.table th:first-child,
+    table.table td:first-child {
+        min-width: 50px;
+        /* Lebar untuk kolom No */
     }
 
     /* Kolom nama siswa lebih lebar */
-    table.table th:nth-child(6), table.table td:nth-child(6) {
-        min-width: 200px; /* Kolom nama siswa */
-    }    
+    table.table th:nth-child(6),
+    table.table td:nth-child(6) {
+        min-width: 200px;
+        /* Kolom nama siswa */
+    }
 </style>
 
 <div class="container">
@@ -42,6 +49,19 @@
                     </button>
                 </div>
             </div>
+
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session('error') }}</strong>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
 
             @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -129,7 +149,7 @@
     </div>
 </div
 
-<!-- Import Excel Modal -->
+    <!-- Import Excel Modal -->
 <div class="modal fade" id="importExcelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -21,22 +21,48 @@ use App\Http\Controllers\Controller;
 use App\Imports\NilaiImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
 
 class ExcelController extends Controller
 {
     public function import_excel(Request $request)
     {
-        $this->validate($request, [
-            'file' => 'required|mimes:xls,xlsx'
+        // $this->validate($request, [
+        //     'file' => 'required|mimes:xls,xlsx'
+        // ]);
+
+        // $file = $request->file('file');
+        // $nama_file = rand().$file->getClientOriginalName();
+        // $file->move('uploads', $nama_file);
+
+        // Excel::import(new NilaiImport(), public_path('/uploads/'.$nama_file));
+
+        // return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
+
+        // Validasi file
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xls,xlsx',
         ]);
 
-        $file = $request->file('file');
-        $nama_file = rand().$file->getClientOriginalName();
-        $file->move('uploads', $nama_file);
+        // Cek apakah validasi gagal
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) // Mengembalikan pesan error
+                ->withInput(); // Mengembalikan input sebelumnya
+        }
 
-        Excel::import(new NilaiImport(), public_path('/uploads/'.$nama_file));
-                
-        return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
+        try {
+            $file = $request->file('file');
+            $nama_file = rand() . $file->getClientOriginalName();
+            $file->move('uploads', $nama_file);
+
+            // Proses import data
+            Excel::import(new NilaiImport(), public_path('/uploads/' . $nama_file));
+
+            return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengimport data: ' . $e->getMessage());
+        }
     }
 
     public function export_excel()
