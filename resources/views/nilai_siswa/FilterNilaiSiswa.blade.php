@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <h5 class="card-title">K-Means</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma K-Means</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">K-Means adalah algoritma clustering yang membagi data ke dalam sejumlah cluster berdasarkan jarak terdekat ke centroid.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="elbow-method">Elbow Method</button>
                             <button class="btn btn-primary" type="button" name="algoritma" value="kmeans" data-bs-toggle="modal" data-bs-target="#inputKModal">Proses K-Means</button>
@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <h5 class="card-title">DBSCAN</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma DBSCAN</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">DBSCAN adalah algoritma clustering berbasis kepadatan yang mampu mengidentifikasi noise dan cluster dengan bentuk tidak beraturan.</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <button class="btn btn-link" type="submit" name="algoritma" value="kdgraph">K-Distance Graph</button>
                             <button class="btn btn-primary" type="button" name="algoritma" value="dbscan" data-bs-toggle="modal" data-bs-target="#inputHyperModal">Proses DBSCAN</button>
@@ -78,7 +78,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Agglomerative</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">Algoritma Agglomerative</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">Agglomerative adalah algoritma hierarchical clustering yang menggabungkan data secara bertahap berdasarkan kedekatan hingga membentuk satu cluster besar.</p>
                         <div class="d-flex flex-row-reverse">
                             <button class="btn btn-success" type="submit" name="algoritma" value="agglomerative">Proses Agglomerative</button>
                         </div>
