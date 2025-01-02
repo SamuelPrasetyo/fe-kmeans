@@ -3,7 +3,13 @@
 @section('title', 'Nilai Siswa')
 
 @section('content')
+<link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 <style>
+    #myTable thead th, #myTable tbody td {
+        text-align: center; /* Mengatur teks ke tengah */
+        vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
+    }
+
     #button {
         width: 200px;
     }
@@ -99,7 +105,7 @@
     </form>
 
     <div style="overflow-x: auto; white-space: nowrap;">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="myTable">
             <thead class="text-center">
                 <th>No.</th>
                 <th>Semester</th>
@@ -210,6 +216,11 @@
 @endsection
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script>
+    let table = new DataTable('#myTable');
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const populateModalInputs = (modalId) => {

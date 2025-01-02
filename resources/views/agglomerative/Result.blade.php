@@ -3,7 +3,13 @@
 @section('title', 'Hasil Clustering Agglomerative')
 
 @section('content')
+<link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 <style>
+    #myTable thead th, #myTable tbody td {
+        text-align: center; /* Mengatur teks ke tengah */
+        vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
+    }
+    
     #header-table {
         background-color: yellow;
         /* width: 120px; */
@@ -108,7 +114,7 @@
 
     <h3 style="text-align: center;">Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="myTable">
             <thead class="text-center">
                 <tr>
                     <th id="header-table">No.</th>
@@ -163,6 +169,11 @@
 
 
 @section('scripts')
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script>
+    let table = new DataTable('#myTable');
+</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Data Cluster untuk Grafik Doughnut
