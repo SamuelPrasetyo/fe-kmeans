@@ -9,7 +9,7 @@
         text-align: center; /* Mengatur teks ke tengah */
         vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
     }
-    
+
     #header-table {
         background-color: yellow;
         /* width: 120px; */
@@ -81,10 +81,10 @@
                     <td>Calinski Harabasz Index</td>
                     <td>{{ $calinski_harabasz_index }}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Sum Squared Error</td>
                     <td>{{ $sum_squared_error }}</td>
-                </tr>
+                </tr> -->
             </table>
         </div>
     </div>

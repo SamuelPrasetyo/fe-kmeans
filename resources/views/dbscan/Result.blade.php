@@ -5,11 +5,14 @@
 @section('content')
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 <style>
-    #myTable thead th, #myTable tbody td {
-        text-align: center; /* Mengatur teks ke tengah */
-        vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
+    #myTable thead th,
+    #myTable tbody td {
+        text-align: center;
+        /* Mengatur teks ke tengah */
+        vertical-align: middle;
+        /* Memastikan teks berada di tengah secara vertikal */
     }
-    
+
     #header-table {
         background-color: yellow;
         /* width: 120px; */
@@ -84,6 +87,34 @@
             </table>
         </div>
     </div>
+
+    <!-- Table Nilai Centroid Akhir -->
+    <h3 style="text-align: center;">Nilai Centroid Final</h3>
+    <table class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th id="header-table">Dimensi</th>
+                @foreach ($final_centroids as $index => $centroid)
+                <th id="header-table">Centroid {{ $index }}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @php
+            // Ambil jumlah dimensi dari salah satu centroid
+            $dimensions = count(reset($final_centroids));
+            @endphp
+            @for ($dimIndex = 0; $dimIndex < $dimensions; $dimIndex++)
+                <tr>
+                <td>Dimensi {{ $dimIndex + 1 }}</td>
+                @foreach ($final_centroids as $centroid)
+                <td>{{ $centroid[$dimIndex] }}</td>
+                @endforeach
+                </tr>
+                @endfor
+        </tbody>
+    </table>
+
 
     <h3 style="text-align: center;">Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
