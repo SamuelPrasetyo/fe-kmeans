@@ -38,12 +38,12 @@
 
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" name="username" required="" placeholder="Username" autocomplete="off">
+                                <input class="form-control" type="text" name="username" required="" maxlength="30" placeholder="Username" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" name="password" id="form-control-password" required="" placeholder="Password">
+                                <input class="form-control" type="password" name="password" id="form-control-password" required="" maxlength="50" placeholder="Password">
                             </div>
                         </div>
                         <div class="form-group row">

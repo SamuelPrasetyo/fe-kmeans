@@ -93,25 +93,25 @@
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <th id="header-table">Dimensi</th>
-                @foreach ($final_centroids as $index => $centroid)
-                <th id="header-table">Centroid {{ $index }}</th>
+                <th id="header-table">Mata Pelajaran</th>
+                @foreach ($final_centroids as $label => $centroid)
+                <th id="header-table">Centroid {{ $label }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
             @php
-            // Ambil jumlah dimensi dari salah satu centroid
-            $dimensions = count(reset($final_centroids));
+            // Ambil nama mata pelajaran dari salah satu centroid
+            $subjects = array_keys(reset($final_centroids));
             @endphp
-            @for ($dimIndex = 0; $dimIndex < $dimensions; $dimIndex++)
-                <tr>
-                <td>Dimensi {{ $dimIndex + 1 }}</td>
+            @foreach ($subjects as $subject)
+            <tr>
+                <td>{{ $subject }}</td>
                 @foreach ($final_centroids as $centroid)
-                <td>{{ $centroid[$dimIndex] }}</td>
+                <td>{{ $centroid[$subject] }}</td>
                 @endforeach
-                </tr>
-                @endfor
+            </tr>
+            @endforeach
         </tbody>
     </table>
 

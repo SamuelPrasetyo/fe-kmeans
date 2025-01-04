@@ -22,6 +22,11 @@ class API_agglomerative
             if ($response->successful()) {
                 $data = $response->json();
 
+                // Validasi struktur respons
+                if (!isset($data['evaluation'], $data['centroids'], $data['data'])) {
+                    return back()->withErrors(['error' => 'Struktur respons API tidak valid.']);
+                }
+
                 // Hitung jumlah data per cluster
                 $clusters = collect($data['data'])->groupBy('Cluster')->map(function ($items) {
                     return count($items); // Hitung jumlah data dalam setiap cluster
@@ -36,7 +41,6 @@ class API_agglomerative
                         'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                         'silhouette_score' => $data['evaluation']['silhouette_score'],
                         'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
-                        'sum_squared_error' => $data['evaluation']['sum_squared_error'],
                         'data' => $data['data'],
                         'final_centroids' => $data['centroids'],
                         'clusters' => $clusters
@@ -49,7 +53,6 @@ class API_agglomerative
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
-                    'sum_squared_error' => $data['evaluation']['sum_squared_error'],
                     'final_centroids' => $data['centroids'],
                     'data' => $data['data'],
                     'clusters' => $clusters

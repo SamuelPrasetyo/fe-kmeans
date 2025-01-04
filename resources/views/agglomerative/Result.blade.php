@@ -5,9 +5,12 @@
 @section('content')
 <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
 <style>
-    #myTable thead th, #myTable tbody td {
-        text-align: center; /* Mengatur teks ke tengah */
-        vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
+    #myTable thead th,
+    #myTable tbody td {
+        text-align: center;
+        /* Mengatur teks ke tengah */
+        vertical-align: middle;
+        /* Memastikan teks berada di tengah secara vertikal */
     }
 
     #header-table {
@@ -64,7 +67,7 @@
             <h3 style="text-align: center;">Grafik Jumlah Data per Cluster</h3>
             <canvas id="clusterChart" style="width: 100%; height: auto;"></canvas>
         </div>
-        
+
         <!-- Table Hasil Evaluasi Clustering -->
         <div style="flex: 1;">
             <h3 style="text-align: center;">Hasil Evaluasi Clustering</h3>
@@ -81,10 +84,6 @@
                     <td>Calinski Harabasz Index</td>
                     <td>{{ $calinski_harabasz_index }}</td>
                 </tr>
-                <!-- <tr>
-                    <td>Sum Squared Error</td>
-                    <td>{{ $sum_squared_error }}</td>
-                </tr> -->
             </table>
         </div>
     </div>
@@ -94,18 +93,22 @@
     <table class="table table-bordered data-table">
         <thead>
             <tr>
-                <th id="header-table">Dimensi</th>
-                @foreach ($final_centroids as $index => $centroid)
-                <th id="header-table">Centroid {{ $index + 1 }}</th>
+                <th id="header-table">Mata Pelajaran</th>
+                @foreach ($final_centroids as $cluster_id => $centroid)
+                <th id="header-table">Centroid {{ $cluster_id }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach ($final_centroids[0] as $dimIndex => $value)
+            @php
+            // Ambil nama mata pelajaran dari salah satu centroid
+            $subjects = array_keys(reset($final_centroids));
+            @endphp
+            @foreach ($subjects as $subject)
             <tr>
-                <td>Dimensi {{ $dimIndex + 1 }}</td>
+                <td>{{ $subject }}</td>
                 @foreach ($final_centroids as $centroid)
-                <td>{{ $centroid[$dimIndex] }}</td>
+                <td>{{ $centroid[$subject] }}</td>
                 @endforeach
             </tr>
             @endforeach
