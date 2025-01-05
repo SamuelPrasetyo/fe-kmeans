@@ -83,4 +83,9 @@ class MainController extends Controller
                 return back()->withErrors(['error' => 'Algoritma tidak valid!']);
         }
     }
+
+    public function hasilPerbandingan()
+    {
+        return view('HasilPerbandingan');
+    }
 }

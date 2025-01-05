@@ -65,7 +65,7 @@
             <a href="dashboard">Dashboard</a>
             <a href="nilaisiswa">Data Nilai Siswa</a>
             <a href="form-clustering">Form Clustering</a>
-            <a href="">Hasil Perbandingan</a>
+            <a href="hasil-perbandingan">Hasil Perbandingan</a>
             <a href="logout">Logout</a>
         </div>
 
@@ -76,7 +76,7 @@
 
     <!-- Script JS -->
     <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
-
+    
     @yield('scripts')
 </body>
 

@@ -34,7 +34,7 @@ Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
     Route::post('process-clustering', [App\Http\Controllers\MainController::class, 'processClustering'])->name('process-clustering');
 
 /* Route Hasil Perbandingan Algoritma */
-    
+    Route::get('hasil-perbandingan', [App\Http\Controllers\MainController::class, 'hasilPerbandingan']);
 
 /* Route Download Excel Hasil Clustering */
     Route::get('/download-excel', [App\Http\Controllers\UtilityController::class, 'generateExcel'])->name('download.excel');
