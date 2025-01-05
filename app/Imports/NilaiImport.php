@@ -28,9 +28,16 @@ class NilaiImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // if (NilaiSiswaModel::where('nis', $row[1])->exists()) {
-        //     return null; // Lewati data jika 'nis' sudah ada
-        // }
+        // Validasi: Cek apakah data sudah ada
+        $exists = NilaiSiswaModel::where('nis', $row['nis'])
+            ->where('tahunajar', $row['tahun_ajar'])
+            ->where('semester', $row['semester'])
+            ->exists();
+
+        // Jika data sudah ada, lewati proses penyimpanan
+        if ($exists) {
+            return null;
+        }
 
         return new NilaiSiswaModel([
             'semester' => $row['semester'],

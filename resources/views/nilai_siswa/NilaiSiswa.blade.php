@@ -149,7 +149,7 @@
     </div>
 </div
 
-    <!-- Import Excel Modal -->
+<!-- Import Excel Modal -->
 <div class="modal fade" id="importExcelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -173,4 +173,22 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const importForm = document.querySelector('#importExcelModal form');
+        const importButton = importForm.querySelector('button[type="submit"]');
+
+        importForm.addEventListener('submit', function (e) {
+            importButton.disabled = true;
+            importButton.textContent = "Proses...";
+            importButton.insertAdjacentHTML(
+                "beforeend",
+                " <span class='spinner-border spinner-border-sm'></span>"
+            );
+        });
+    });
+</script>
 @endsection

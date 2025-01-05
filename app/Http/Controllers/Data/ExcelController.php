@@ -27,18 +27,6 @@ class ExcelController extends Controller
 {
     public function import_excel(Request $request)
     {
-        // $this->validate($request, [
-        //     'file' => 'required|mimes:xls,xlsx'
-        // ]);
-
-        // $file = $request->file('file');
-        // $nama_file = rand().$file->getClientOriginalName();
-        // $file->move('uploads', $nama_file);
-
-        // Excel::import(new NilaiImport(), public_path('/uploads/'.$nama_file));
-
-        // return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
-
         // Validasi file
         $validator = Validator::make($request->all(), [
             'file' => 'required|mimes:xls,xlsx',

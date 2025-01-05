@@ -28,13 +28,13 @@ Route::get('dashboard', [App\Http\Controllers\MainController::class, 'index']);
     Route::delete('delete-nilai-siswa', [App\Http\Controllers\Data\NilaiSiswaController::class, 'delete'])->name('delete-nilai-siswa');
     // Route::get('nilai-siswa-filtered', [App\Http\Controllers\Data\NilaiSiswaController::class, 'filter']);
     Route::get('nilai-siswa-filter', [App\Http\Controllers\Data\NilaiSiswaController::class, 'filter']);
-/* End Route Nilai Siswa */
 
 /* Route Process Clustering */
     Route::get('form-clustering', [App\Http\Controllers\MainController::class, 'formClustering']);
     Route::post('process-clustering', [App\Http\Controllers\MainController::class, 'processClustering'])->name('process-clustering');
-/* End Route Process Clustering */
+
+/* Route Hasil Perbandingan Algoritma */
+    
 
 /* Route Download Excel Hasil Clustering */
     Route::get('/download-excel', [App\Http\Controllers\UtilityController::class, 'generateExcel'])->name('download.excel');
-/* End Route Download Excel Hasil Clustering */

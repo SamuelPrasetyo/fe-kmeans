@@ -64,8 +64,8 @@
         <div class="sidebar">
             <a href="dashboard">Dashboard</a>
             <a href="nilaisiswa">Data Nilai Siswa</a>
-            <!-- <a href="elbow-method">Elbow Method</a> -->
             <a href="form-clustering">Form Clustering</a>
+            <a href="">Hasil Perbandingan</a>
             <a href="logout">Logout</a>
         </div>
 
