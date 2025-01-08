@@ -20,6 +20,7 @@
     table.table th,
     table.table td {
         text-align: center;
+        vertical-align: middle;
     }
 
     /* Center align all cells by default */
