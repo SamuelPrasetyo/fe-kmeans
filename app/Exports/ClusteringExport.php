@@ -19,47 +19,6 @@ class ClusteringExport implements FromArray, WithStyles, WithColumnWidths, WithH
         $this->clusters = $clusters; // Hasil clustering
     }
 
-    // public function array(): array
-    // {
-    //     // Gabungkan data dan cluster ke dalam satu array untuk diekspor
-    //     $result = [];
-    //     foreach ($this->data as $index => $item) {
-    //         $result[] = [
-    //             'No' => $index + 1,
-    //             'Cluster' => (string) ($item['Cluster'] ?? 0),
-    //             'Tahun Ajar' => $item['Tahun Ajar'],
-    //             'Semester' => $item['Semester'],
-    //             'NIS' => $item['NIS'],
-    //             'Kelas' => $item['Kelas'],
-    //             'Nama Siswa' => $item['Nama Siswa'],
-    //             'Agama' => $item['NAGAMA'],
-    //             'Bahasa Indonesia' => $item['NBINDO'],
-    //             'Bahasa Inggris' => $item['NBINGGRIS'],
-    //             'IPA' => $item['NIPA'],
-    //             'IPS' => $item['NIPS'],
-    //             'Matematika' => $item['NMATEMATIKA'],
-    //             'PJOK' => $item['NPJOK'],
-    //             'PKN' => $item['NPKN'],
-    //             'Prakarya' => $item['NPRAKARYA'],
-    //             'Seni Budaya' => $item['NSENIBUDAYA'],
-    //             'TIK' => $item['NTIK'],
-    //         ];
-    //     }
-
-    //     // Sisipkan jeda satu baris kosong
-    //     $result[] = array_fill_keys(array_keys($result[0]), null);
-
-    //     // Tambahkan jumlah masing-masing cluster langsung dari parameter $clusters
-    //     foreach ($this->clusters as $clusterId => $count) {
-    //         $result[] = array_merge(
-    //             array_fill_keys(array_keys($result[0]), null), // Isi kolom sebelumnya dengan kosong
-    //             ['Jumlah Cluster' => "Cluster $clusterId", 'Jumlah' => $count] // Tambahkan di kolom T dan U
-    //         );
-    //     }
-
-    //     return $result;
-    // }
-
     public function array(): array
     {
         $result = [];
@@ -77,6 +36,46 @@ class ClusteringExport implements FromArray, WithStyles, WithColumnWidths, WithH
             'Cluster' => null,
             'Jumlah' => null,
         ];
+
+        // Horizontal
+        // Heading untuk final centroids
+        // $centroids = session('clustering_result')['final_centroids'] ?? session('clustering_result')['centroids'] ?? [];
+        // if (!empty($centroids)) {
+        //     // Buat header untuk centroids
+        //     $header = array_merge(['Cluster'], array_keys(current($centroids)));
+        //     $result[] = $header;
+
+        //     // Tambahkan data centroids ke dalam format horizontal
+        //     foreach ($centroids as $clusterId => $centroid) {
+        //         $row = array_merge(
+        //             [$clusterId == -1 ? "Cluster -1" : "Cluster $clusterId"], // Nama cluster
+        //             array_values($centroid) // Nilai centroid
+        //         );
+        //         $result[] = $row;
+        //     }
+        // }
+
+        // Vertical
+        // Heading untuk final centroids
+        $centroids = session('clustering_result')['final_centroids'] ?? session('clustering_result')['centroids'] ?? [];
+        $result[] = array_merge(
+            ['Mata Kuliah'],
+            array_map(fn($index) => $index == -1 ? "Cluster -1" : "Cluster $index", array_keys($centroids))
+        );
+
+        if (!empty($centroids)) {
+            $subjects = array_keys(current($centroids)); // Ambil nama mata kuliah
+            foreach ($subjects as $subject) {
+                $row = [$subject];
+                foreach ($centroids as $clusterId => $centroid) {
+                    $row[] = $centroid[$subject] ?? null; // Ambil nilai centroid
+                }
+                $result[] = $row;
+            }
+        }
+
+        // Sisipkan baris kosong sebagai pemisah
+        $result[] = array_fill(0, count($result[0]), null);
 
         // Tambahkan heading untuk data siswa
         $result[] = [
