@@ -30,6 +30,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th id="header-table">Jumlah Cluster</th>
                     <th id="header-table">EPS</th>
                     <th id="header-table">Min PTS</th>
                     <th id="header-table">Calinski-Harabasz Index</th>
@@ -40,6 +41,7 @@
             <tbody>
                 @foreach ($results as $result)
                 <tr>
+                    <td>{{ $result['num_clusters'] }}</td>
                     <td>{{ $result['eps'] }}</td>
                     <td>{{ $result['min_pts'] }}</td>
                     <td>{{ $result['calinski_harabasz_index'] == -1 ? 'N/A' : number_format($result['calinski_harabasz_index'], 2) }}</td>
