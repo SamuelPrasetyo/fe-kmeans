@@ -20,7 +20,7 @@ use App\Http\Modules\API_dbscan;
 use Illuminate\Http\Request;
 use App\Http\Modules\API_Kmeans;
 use App\Http\Modules\API_agglomerative;
-use Svg\Tag\Rect;
+use App\Http\Modules\MHasilPerbandingan;
 
 class MainController extends Controller
 {
@@ -86,6 +86,12 @@ class MainController extends Controller
 
     public function hasilPerbandingan()
     {
-        return view('HasilPerbandingan');
+        $data = MHasilPerbandingan::getEvaluasiTerbaik();
+
+        return view('HasilPerbandingan', [
+            'nilaiEvaluasi' => $data['hasilTerbaik'],
+            'jumlahEvaluasi' => $data['jumlahEvaluasi'],
+            'jumlahKeseluruhan' => $data['jumlahKeseluruhan']
+        ]);
     }
 }
