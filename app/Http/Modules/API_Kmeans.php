@@ -4,6 +4,7 @@ namespace App\Http\Modules;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class API_Kmeans
 {
@@ -27,6 +28,25 @@ class API_Kmeans
                 $clusters = collect($data['data'])->groupBy('Cluster')->map(function ($items) {
                     return count($items); // Hitung jumlah data dalam setiap cluster
                 });
+
+                $evaluasiData = [
+                    'semester' => $semester,
+                    'tahunajar' => $tahunajar,
+                    'algoritma' => 'K-Means',
+                    'chi' => $data['evaluation']['calinski_harabasz_index'],
+                    'dbi' => $data['evaluation']['davies_bouldin_index'],
+                    'ss' => $data['evaluation']['silhouette_score'],
+                ];
+    
+                // Update jika data dengan kombinasi semester, tahunajar, dan algoritma sudah ada
+                DB::table('nilaievaluasi')->updateOrInsert(
+                    [
+                        'semester' => $semester,
+                        'tahunajar' => $tahunajar,
+                        'algoritma' => 'K-Means'
+                    ],
+                    $evaluasiData
+                );
 
                 // Simpan data ke session
                 session([
