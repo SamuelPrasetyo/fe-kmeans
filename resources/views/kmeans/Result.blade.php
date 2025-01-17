@@ -3,7 +3,9 @@
 @section('title', 'Hasil Clustering K-Means')
 
 @section('content')
-<link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+<!-- <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
+<link href="{{ asset('assets/data_tables/datatables.min.css') }}" rel="stylesheet">
+
 <style>
     #myTable thead th,
     #myTable tbody td {
@@ -15,6 +17,7 @@
 
     #header-table {
         background-color: yellow;
+        text-align: center;
         /* width: 120px; */
     }
 
@@ -34,13 +37,6 @@
     table.table td:first-child {
         min-width: 50px;
         /* Lebar untuk kolom No */
-    }
-
-    /* Kolom nama siswa lebih lebar */
-    table.table th:nth-child(6),
-    table.table td:nth-child(6) {
-        min-width: 200px;
-        /* Kolom nama siswa */
     }
 </style>
 
@@ -115,7 +111,7 @@
 
     <h3 style="text-align: center;">Data Cluster</h3>
     <div style="overflow-x: auto; white-space: nowrap;">
-        <table class="table table-bordered table-striped" id="myTable">
+        <table class="table table-bordered table-hover" id="myTable">
             <thead class="text-center">
                 <tr>
                     <th id="header-table">No.</th>
@@ -170,12 +166,20 @@
 
 
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script> -->
+
+<script src="{{ asset('assets/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('assets/data_tables/datatables.min.js') }}"></script>
+
 <script>
-    let table = new DataTable('#myTable');
+    let table = new DataTable('#myTable', {
+        scrollX: true
+    });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<script src="{{ asset('assets/chartjs/chart.js') }}"></script>
 <script>
     // Data Cluster untuk Grafik Doughnut
     const ctx = document.getElementById('clusterChart').getContext('2d');

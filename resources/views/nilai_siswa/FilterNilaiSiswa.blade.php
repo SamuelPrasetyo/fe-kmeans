@@ -3,11 +3,16 @@
 @section('title', 'Nilai Siswa')
 
 @section('content')
-<link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+<!-- <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css"> -->
+<link href="{{ asset('assets/data_tables/datatables.min.css') }}" rel="stylesheet">
+
 <style>
-    #myTable thead th, #myTable tbody td {
-        text-align: center; /* Mengatur teks ke tengah */
-        vertical-align: middle; /* Memastikan teks berada di tengah secara vertikal */
+    #myTable thead th,
+    #myTable tbody td {
+        text-align: center;
+        /* Mengatur teks ke tengah */
+        vertical-align: middle;
+        /* Memastikan teks berada di tengah secara vertikal */
     }
 
     #button {
@@ -17,22 +22,16 @@
     table.table th,
     table.table td {
         min-width: 150px;
-        /* Lebar minimum kolom */
+    }
+
+    #thead {
         text-align: center;
-        /* Teks rata tengah */
     }
 
     table.table th:first-child,
     table.table td:first-child {
         min-width: 50px;
         /* Lebar untuk kolom No */
-    }
-
-    /* Kolom nama siswa lebih lebar */
-    table.table th:nth-child(6),
-    table.table td:nth-child(6) {
-        min-width: 200px;
-        /* Kolom nama siswa */
     }
 </style>
 
@@ -105,50 +104,50 @@
     </form>
 
     <div style="overflow-x: auto; white-space: nowrap;">
-        <table class="table table-bordered table-striped" id="myTable">
-            <thead class="text-center">
-                <th>No.</th>
-                <th>Semester</th>
-                <th>Tahun Ajar</th>
-                <th>NIS</th>
-                <th>Kelas</th>
-                <th style="width: 150px;">Nama Siswa</th>
-                <th>Agama</th>
-                <th>PKN</th>
-                <th>Bahasa Indonesia</th>
-                <th>Matematika</th>
-                <th>IPA</th>
-                <th>IPS</th>
-                <th>Bahasa Inggris</th>
-                <th>Seni Budaya</th>
-                <th>PJOK</th>
-                <th>Prakarya</th>
-                <th>TIK</th>
-            </thead>
-            <tbody class="text-center">
-                @foreach ($result as $index => $n)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $n->semester }}</td>
-                    <td>{{ substr($n->tahunajar, 0, 4) . ' / ' . substr($n->tahunajar, 4) }}</td>
-                    <td>{{ $n->nis }}</td>
-                    <td>{{ $n->kelas }}</td>
-                    <td>{{ $n->nama_siswa }}</td>
-                    <td>{{ $n->nagama }}</td>
-                    <td>{{ $n->npkn }}</td>
-                    <td>{{ $n->nbindo }}</td>
-                    <td>{{ $n->nmatematika }}</td>
-                    <td>{{ $n->nipa }}</td>
-                    <td>{{ $n->nips }}</td>
-                    <td>{{ $n->nbinggris }}</td>
-                    <td>{{ $n->nsenibudaya }}</td>
-                    <td>{{ $n->npjok }}</td>
-                    <td>{{ $n->nprakarya }}</td>
-                    <td>{{ $n->ntik }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <table class="table table-bordered table-hover" id="myTable">
+        <thead class="text-center">
+            <th id="thead">No.</th>
+            <th id="thead">Semester</th>
+            <th id="thead">Tahun Ajar</th>
+            <th id="thead">NIS</th>
+            <th id="thead">Kelas</th>
+            <th id="thead" style="width: 150px;">Nama Siswa</th>
+            <th id="thead">Agama</th>
+            <th id="thead">PKN</th>
+            <th id="thead">B.Indonesia</th>
+            <th id="thead">Matematika</th>
+            <th id="thead">IPA</th>
+            <th id="thead">IPS</th>
+            <th id="thead">B.Inggris</th>
+            <th id="thead">Seni Budaya</th>
+            <th id="thead">PJOK</th>
+            <th id="thead">Prakarya</th>
+            <th id="thead">TIK</th>
+        </thead>
+        <tbody class="text-center">
+            @foreach ($result as $index => $n)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $n->semester }}</td>
+                <td>{{ substr($n->tahunajar, 0, 4) . ' / ' . substr($n->tahunajar, 4) }}</td>
+                <td>{{ $n->nis }}</td>
+                <td>{{ $n->kelas }}</td>
+                <td>{{ $n->nama_siswa }}</td>
+                <td>{{ $n->nagama }}</td>
+                <td>{{ $n->npkn }}</td>
+                <td>{{ $n->nbindo }}</td>
+                <td>{{ $n->nmatematika }}</td>
+                <td>{{ $n->nipa }}</td>
+                <td>{{ $n->nips }}</td>
+                <td>{{ $n->nbinggris }}</td>
+                <td>{{ $n->nsenibudaya }}</td>
+                <td>{{ $n->npjok }}</td>
+                <td>{{ $n->nprakarya }}</td>
+                <td>{{ $n->ntik }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     </div>
 </div>
 
@@ -216,10 +215,16 @@
 @endsection
 
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+<!-- <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script> -->
+
+<script src="{{ asset('assets/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('assets/data_tables/datatables.min.js') }}"></script>
+
 <script>
-    let table = new DataTable('#myTable');
+    let table = new DataTable('#myTable', {
+        scrollX: true
+    });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {

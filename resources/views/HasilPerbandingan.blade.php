@@ -17,7 +17,7 @@
 </style>
 
 <div class="container">
-<h1 class="text-center">Hasil Perbandingan</h1>
+<h1 class="text-center mb-4">Hasil Perbandingan</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-hover text-center">
             <thead class="table-dark">
@@ -42,9 +42,9 @@
             </thead>
             <tbody>
                 @foreach ($nilaiEvaluasi as $tahunajar => $semesters)
-                    // Loop pertama: Iterasi setiap Tahun Ajar dalam data evaluasi
+                    <!-- Loop pertama: Iterasi setiap Tahun Ajar dalam data evaluasi -->
                     @foreach ($semesters as $semester => $records)
-                        // Loop kedua: Iterasi setiap Semester dalam Tahun Ajar tertentu
+                        <!-- Loop kedua: Iterasi setiap Semester dalam Tahun Ajar tertentu -->
                         <tr>
                             <td>{{ $tahunajar }}</td>
                             <td>{{ $semester }}</td>
