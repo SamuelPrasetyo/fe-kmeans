@@ -39,6 +39,7 @@ class API_dbscan
                     'chi' => $data['evaluation']['calinski_harabasz_index'],
                     'dbi' => $data['evaluation']['davies_bouldin_index'],
                     'ss' => $data['evaluation']['silhouette_score'],
+                    'parameter' => 'eps = ' . $eps . ' dan ' . 'minpts = ' . $min_pts
                 ];
     
                 // Update jika data dengan kombinasi semester, tahunajar, dan algoritma sudah ada

@@ -36,6 +36,7 @@ class API_Kmeans
                     'chi' => $data['evaluation']['calinski_harabasz_index'],
                     'dbi' => $data['evaluation']['davies_bouldin_index'],
                     'ss' => $data['evaluation']['silhouette_score'],
+                    'parameter' => 'k = ' . $n_clusters
                 ];
     
                 // Update jika data dengan kombinasi semester, tahunajar, dan algoritma sudah ada

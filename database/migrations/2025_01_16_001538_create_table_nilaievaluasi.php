@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('nilaievaluasi', function (Blueprint $table) {
+            $table->increments('idevaluasi');
             $table->string('semester');
             $table->string('tahunajar');
             $table->string('algoritma');
             $table->string('chi');
             $table->string('dbi');
             $table->string('ss');
+            $table->string('parameter');
         });
     }
 

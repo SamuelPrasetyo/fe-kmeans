@@ -62,4 +62,17 @@ class MHasilPerbandingan
             'jumlahKeseluruhan' => $jumlahKeseluruhan,
         ];
     }
+
+    public static function getParameter() {
+        $query = "SELECT semester, tahunajar, algoritma, parameter
+                FROM nilaievaluasi";
+        
+        $exec = DB::select($query);
+
+        if (empty($exec)) {
+            return [];
+        }
+
+        return $exec;
+    }
 }

@@ -77,5 +77,27 @@
             </tbody>
         </table>
     </div>
+
+    <h1 class="text-center mt-3 mb-4">Informasi Nilai Parameter</h1>
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-warning">
+            <th>No.</th>
+            <th>Semester</th>
+            <th>Tahun Ajar</th>
+            <th>Algoritma</th>
+            <th>Nilai Parameter</th>
+        </thead>
+        <tbody>
+            @foreach ($parameter as $index => $params)
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $params->semester }}</td>
+                <td>{{ $params->tahunajar }}</td>
+                <td>{{ $params->algoritma }}</td>
+                <td>{{ $params->parameter }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection

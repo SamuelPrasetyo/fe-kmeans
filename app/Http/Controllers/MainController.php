@@ -87,11 +87,13 @@ class MainController extends Controller
     public function hasilPerbandingan()
     {
         $data = MHasilPerbandingan::getEvaluasiTerbaik();
+        $parameter = MHasilPerbandingan::getParameter();
 
         return view('HasilPerbandingan', [
             'nilaiEvaluasi' => $data['hasilTerbaik'],
             'jumlahEvaluasi' => $data['jumlahEvaluasi'],
-            'jumlahKeseluruhan' => $data['jumlahKeseluruhan']
+            'jumlahKeseluruhan' => $data['jumlahKeseluruhan'],
+            'parameter' => $parameter
         ]);
     }
 }
