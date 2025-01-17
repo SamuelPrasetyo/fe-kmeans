@@ -191,4 +191,20 @@
         });
     });
 </script>
+
+<Script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteForm = document.querySelector('#confirmDeleteModal form');
+        const deleteButton = deleteForm.querySelector('button[type="submit"]');
+
+        deleteForm.addEventListener('submit', function (e) {
+            deleteButton.disabled = true;
+            deleteButton.textContent = "Proses...";
+            deleteButton.insertAdjacentHTML(
+                "beforeend",
+                " <span class='spinner-border spinner-border-sm'></span>"
+            );
+        });
+    });
+</Script>
 @endsection
