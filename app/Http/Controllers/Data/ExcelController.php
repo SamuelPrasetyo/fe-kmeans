@@ -29,7 +29,7 @@ class ExcelController extends Controller
     {
         // Validasi file
         $validator = Validator::make($request->all(), [
-            'file' => 'required|mimes:xls,xlsx',
+            'file' => 'required|mimes:xlsx',
         ]);
 
         // Cek apakah validasi gagal
@@ -49,7 +49,7 @@ class ExcelController extends Controller
 
             return redirect('nilaisiswa')->with('success', 'Data berhasil diimport!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengimport data: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengimport data !');
         }
     }
 

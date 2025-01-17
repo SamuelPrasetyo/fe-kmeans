@@ -55,13 +55,20 @@
 
             @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>{{ session('error') }}</strong>
+                <strong>Terjadi kesalahan!</strong>
                 <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
                 </ul>
+            </div>
+            @endif
+
+            @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session('error') }}</strong>
+                <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
 
@@ -147,7 +154,7 @@
     </div>
 </div
 
-<!-- Import Excel Modal -->
+    <!-- Import Excel Modal -->
 <div class="modal fade" id="importExcelModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -184,11 +191,11 @@
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const importForm = document.querySelector('#importExcelModal form');
         const importButton = importForm.querySelector('button[type="submit"]');
 
-        importForm.addEventListener('submit', function (e) {
+        importForm.addEventListener('submit', function(e) {
             importButton.disabled = true;
             importButton.textContent = "Proses...";
             importButton.insertAdjacentHTML(
@@ -200,11 +207,11 @@
 </script>
 
 <Script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const deleteForm = document.querySelector('#confirmDeleteModal form');
         const deleteButton = deleteForm.querySelector('button[type="submit"]');
 
-        deleteForm.addEventListener('submit', function (e) {
+        deleteForm.addEventListener('submit', function(e) {
             deleteButton.disabled = true;
             deleteButton.textContent = "Proses...";
             deleteButton.insertAdjacentHTML(
