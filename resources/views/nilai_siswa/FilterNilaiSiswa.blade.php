@@ -111,7 +111,7 @@
             <th id="thead">Tahun Ajar</th>
             <th id="thead">NIS</th>
             <th id="thead">Kelas</th>
-            <th id="thead" style="width: 150px;">Nama Siswa</th>
+            <th id="thead">Nama Siswa</th>
             <th id="thead">Agama</th>
             <th id="thead">PKN</th>
             <th id="thead">B.Indonesia</th>

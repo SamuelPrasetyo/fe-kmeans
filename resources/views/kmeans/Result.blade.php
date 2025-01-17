@@ -120,7 +120,7 @@
                     <th id="header-table">Semester</th>
                     <th id="header-table">Kelas</th>
                     <th id="header-table">NIS</th>
-                    <th id="header-table" style="width: 150px;">Nama Siswa</th>
+                    <th id="header-table">Nama Siswa</th>
                     <th id="header-table">AGAMA</th>
                     <th id="header-table">B. INDO</th>
                     <th id="header-table">B. INGGRIS</th>

@@ -3,30 +3,33 @@
 @section('title', 'Nilai Siswa')
 
 @section('content')
+<link href="{{ asset('assets/data_tables/datatables.min.css') }}" rel="stylesheet">
+
 <style>
     #button {
         width: 200px;
     }
 
+    #thead {
+        text-align: center;
+    }
+
+    #myTable tbody td {
+        text-align: center;
+        /* Mengatur teks ke tengah */
+        vertical-align: middle;
+        /* Memastikan teks berada di tengah secara vertikal */
+    }
+
     table.table th,
     table.table td {
         min-width: 150px;
-        /* Lebar minimum kolom */
-        text-align: center;
-        /* Teks rata tengah */
     }
 
     table.table th:first-child,
     table.table td:first-child {
         min-width: 50px;
         /* Lebar untuk kolom No */
-    }
-
-    /* Kolom nama siswa lebih lebar */
-    table.table th:nth-child(6),
-    table.table td:nth-child(6) {
-        min-width: 200px;
-        /* Kolom nama siswa */
     }
 </style>
 
@@ -71,25 +74,25 @@
             @endif
 
             <div style="overflow-x: auto; white-space: nowrap;">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-hover" id="myTable">
                     <thead class="text-center">
-                        <th>No.</th>
-                        <th>Semester</th>
-                        <th>Tahun Ajar</th>
-                        <th>NIS</th>
-                        <th>Kelas</th>
-                        <th style="width: 150px;">Nama Siswa</th>
-                        <th>Agama</th>
-                        <th>PKN</th>
-                        <th>Bahasa Indonesia</th>
-                        <th>Matematika</th>
-                        <th>IPA</th>
-                        <th>IPS</th>
-                        <th>Bahasa Inggris</th>
-                        <th>Seni Budaya</th>
-                        <th>PJOK</th>
-                        <th>Prakarya</th>
-                        <th>TIK</th>
+                        <th id="thead">No.</th>
+                        <th id="thead">Semester</th>
+                        <th id="thead">Tahun Ajar</th>
+                        <th id="thead">NIS</th>
+                        <th id="thead">Kelas</th>
+                        <th id="thead">Nama Siswa</th>
+                        <th id="thead">Agama</th>
+                        <th id="thead">PKN</th>
+                        <th id="thead">Bahasa Indonesia</th>
+                        <th id="thead">Matematika</th>
+                        <th id="thead">IPA</th>
+                        <th id="thead">IPS</th>
+                        <th id="thead">Bahasa Inggris</th>
+                        <th id="thead">Seni Budaya</th>
+                        <th id="thead">PJOK</th>
+                        <th id="thead">Prakarya</th>
+                        <th id="thead">TIK</th>
                     </thead>
                     <tbody class="text-center">
                         @foreach ($nilaisiswa as $index => $n)
@@ -116,11 +119,6 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-4">
-                {{ $nilaisiswa->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
@@ -173,8 +171,17 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('scripts')
+<script src="{{ asset('assets/jquery/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('assets/data_tables/datatables.min.js') }}"></script>
 
+<script>
+    let table = new DataTable('#myTable', {
+        scrollX: true
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
