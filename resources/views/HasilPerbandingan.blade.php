@@ -46,7 +46,7 @@
                     @foreach ($semesters as $semester => $records)
                         <!-- Loop kedua: Iterasi setiap Semester dalam Tahun Ajar tertentu -->
                         <tr>
-                            <td>{{ $tahunajar }}</td>
+                            <td>{{ substr($tahunajar, 0, 4) . ' / ' . substr($tahunajar, 4) }}</td>
                             <td>{{ $semester }}</td>
                             @foreach ($records as $record)
                                 <td id="{{ $record->is_best_chi ? 'highlight' : '' }}">{{ number_format($record->chi, 3) }}</td>
@@ -82,8 +82,8 @@
     <table class="table table-bordered table-hover text-center">
         <thead class="table-warning">
             <th>No.</th>
-            <th>Semester</th>
             <th>Tahun Ajar</th>
+            <th>Semester</th>
             <th>Algoritma</th>
             <th>Nilai Parameter</th>
         </thead>
@@ -91,8 +91,8 @@
             @foreach ($parameter as $index => $params)
             <tr>
                 <td>{{ $index + 1 }}</td>
+                <td>{{ substr($params->tahunajar, 0, 4) . ' / ' . substr($params->tahunajar, 4) }}</td>
                 <td>{{ $params->semester }}</td>
-                <td>{{ $params->tahunajar }}</td>
                 <td>{{ $params->algoritma }}</td>
                 <td>{{ $params->parameter }}</td>
             </tr>
