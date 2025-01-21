@@ -59,12 +59,12 @@ class ClusteringExport implements FromArray, WithStyles, WithColumnWidths, WithH
         // Heading untuk final centroids
         $centroids = session('clustering_result')['final_centroids'] ?? session('clustering_result')['centroids'] ?? [];
         $result[] = array_merge(
-            ['Mata Kuliah'],
+            ['Mata Pelajaran'],
             array_map(fn($index) => $index == -1 ? "Cluster -1" : "Cluster $index", array_keys($centroids))
         );
 
         if (!empty($centroids)) {
-            $subjects = array_keys(current($centroids)); // Ambil nama mata kuliah
+            $subjects = array_keys(current($centroids)); // Ambil nama mata pelajaran
             foreach ($subjects as $subject) {
                 $row = [$subject];
                 foreach ($centroids as $clusterId => $centroid) {
