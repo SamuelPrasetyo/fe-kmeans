@@ -92,7 +92,7 @@
                 <tr>
                     <th id="header-table">Mata Pelajaran</th>
                     @foreach ($final_centroids as $index => $centroid)
-                    <th id="header-table">Centroid {{ $index + 1 }}</th>
+                    <th id="header-table">Centroid {{ $index }}</th>
                     @endforeach
                 </tr>
             </thead>
