@@ -58,7 +58,6 @@ class API_Kmeans
                         'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                         'silhouette_score' => $data['evaluation']['silhouette_score'],
                         'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
-                        'sum_squared_error' => $data['evaluation']['sum_squared_error'],
                         'data' => $data['data'],
                         'final_centroids' => $data['final_centroids'],
                         'clusters' => $clusters
@@ -72,7 +71,6 @@ class API_Kmeans
                     'davies_bouldin_index' => $data['evaluation']['davies_bouldin_index'],
                     'silhouette_score' => $data['evaluation']['silhouette_score'],
                     'calinski_harabasz_index' => $data['evaluation']['calinski_harabasz_index'],
-                    'sum_squared_error' => $data['evaluation']['sum_squared_error'],
                     'final_centroids' => $data['final_centroids'],
                     'data' => $data['data'],
                     'clusters' => $clusters
